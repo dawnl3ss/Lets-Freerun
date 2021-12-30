@@ -1,0 +1,2 @@
+-> Système de proposition de spots relier avec le panel admin du site et une db
+-> Gestion de l'api googlemap (eventuel)
