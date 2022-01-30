@@ -7,7 +7,7 @@
  *
  * @return mixed
  */
-function get_data_by_ip(string $data, string $ip){ return unserialize(file_get_contents("http://ip-api.com/php/" . $ip))[$data]; }
+function get_data_by_ip(string $data, string $ip){ return unserialize(file_get_contents("http://ip-api.com/php/" . $ip)); }
 
 /**
  * @param string $ip
