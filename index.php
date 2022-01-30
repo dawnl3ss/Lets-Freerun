@@ -15,7 +15,7 @@ foreach (SpotManager::$current_spots_list as $uid => $spot){
 <html xml:lang="fr">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX1XprpFJjtse_HGaH1zSoOEVAmd9DG8A&sensor=false"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOURKEY&sensor=false"></script>
         <style> html, body { height: 100% } </style>
     </head>
 
