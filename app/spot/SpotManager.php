@@ -1,6 +1,6 @@
 <?php
 
-require_once "app/Autoloader.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/Lets-Freerun/app/Autoloader.php";
 __load_all_classes();
 
 class SpotManager {
@@ -13,7 +13,8 @@ class SpotManager {
      */
     public static function add_spot(Spot $spot) : void {
         self::$current_spots_list[$spot->get_uid()] = $spot;
-        SQLManager::write_data("INSERT INTO `spots` (name, location, uid) VALUES ('{$spot->get_name()}', '{$spot->get_location()->encode()}', '{$spot->get_uid()}')");
+        create_spot_path($spot);
+        SQLManager::write_data("INSERT INTO `spots` (name, tier, location, uid) VALUES ('{$spot->get_name()}', '{$spot->get_tier()}', '{$spot->get_location()->encode()}', '{$spot->get_uid()}')");
     }
 
     /**
@@ -31,6 +32,6 @@ class SpotManager {
      */
     public static function edit_spot(int $spot_id, Spot $new_instance) : void {
         self::$current_spots_list[$spot_id] = $new_instance;
-        SQLManager::write_data("UPDATE `spots` SET name = '{$new_instance->get_name()}', location = '{$new_instance->get_location()->encode()}' WHERE uid = '{$spot_id}'");
+        SQLManager::write_data("UPDATE `spots` SET name = '{$new_instance->get_name()}', tier = '{$new_instance->get_tier()}', location = '{$new_instance->get_location()->encode()}' WHERE uid = '{$spot_id}'");
     }
 }
