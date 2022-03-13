@@ -46,7 +46,7 @@
                                                         foreach (SpotManager::$current_spots_list as $uid => $spot){
                                                             if ($spot instanceof Spot){
                                                                 if ($spot->get_location()->get_country() === "United-States")
-                                                                    echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "'> {$spot->get_name()} </a></li>";
+                                                                    echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
                                                             }
                                                         }
                                                     ?>
@@ -58,7 +58,7 @@
                                                         foreach (SpotManager::$current_spots_list as $uid => $spot){
                                                             if ($spot instanceof Spot){
                                                                 if ($spot->get_location()->get_country() === "France")
-                                                                    echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "'> {$spot->get_name()} </a></li>";
+                                                                    echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
                                                             }
                                                         }
                                                     ?>
@@ -70,7 +70,7 @@
                                                         foreach (SpotManager::$current_spots_list as $uid => $spot){
                                                             if ($spot instanceof Spot){
                                                                 if ($spot->get_location()->get_country() === "England")
-                                                                    echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "'> {$spot->get_name()} </a></li>";
+                                                                    echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
                                                             }
                                                         }
                                                     ?>
@@ -160,7 +160,7 @@
                                                 <span> {$spot->get_location()->get_country()} </span>
                                             </div>
                                             <div class='plus-button'>
-                                                <a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "'><i class='fa fa-plus'></i></a>
+                                                <a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'><i class='fa fa-plus'></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -206,7 +206,7 @@
                                                             </div>
                                                             <div class='col-md-6'>
                                                                 <div class='text-button'>
-                                                                    <a href='#'> See details </a>
+                                                                    <a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> See Details </a>
                                                                 </div>
                                                             </div>
                                                         </div>

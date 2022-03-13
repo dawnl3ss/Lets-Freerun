@@ -6,8 +6,7 @@ class UID {
     public $content;
 
     public function __construct(int $content = null){
-        if (is_null($content)) $this->content = $this->generate_uid();
-        else $this->content = $content;
+        $this->content = is_null($content) ? $this->content = $this->generate_uid() : $this->content = $content;
     }
 
     /**

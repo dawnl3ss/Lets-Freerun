@@ -10,6 +10,7 @@ function create_spot_path(Spot $spot){
     add_country_folder($spot, "location/");
     add_city_folder($spot, "location/" . $spot->get_location()->get_country());
     add_name_folder($spot, "location/" . $spot->get_location()->get_country() . "/" . $spot->get_location()->get_city());
+    file_put_contents("location/" . $spot->get_location()->get_country() . "/" . $spot->get_location()->get_city() . "/" . strtolower($spot->get_name()) . "/index.php", file_get_contents("location/template.txt"));
 }
 
 /**
@@ -37,5 +38,4 @@ function add_city_folder(Spot $spot, string $path){
  */
 function add_name_folder(Spot $spot, string $path){
     if (!is_dir($path . "/" . strtolower($spot->get_name()))) mkdir($path . "/" . strtolower($spot->get_name()));
-
 }
