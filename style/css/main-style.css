@@ -1213,3 +1213,9 @@ footer .contact-info ul li a {
     margin-top: 60px;
   }
 }
+
+.fit-image {
+  object-fit: cover;
+  width:300px;
+  height:200px;
+}

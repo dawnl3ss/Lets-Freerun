@@ -35,7 +35,7 @@
                         <div class="col-md-12">
                             <button id="primary-nav-button" type="button"> Menu </button>
                             <nav id="primary-nav" class="dropdown cf">
-                                <span><a href="../Lets-Freerun"><img class="logo" src="image/logo.png" alt="Venue Logo"></span></a>
+                                <span><a href="../Lets-Freerun"><img class="logo" src="image/logo.png" alt="logo"></span></a>
                                 <ul class="dropdown menu">
                                     <li class='active'><a class="scrollTo" data-scrollTo="popular" href="#"> Popular </a></li>
                                     <li><a href="#"> Most Visited </a>
@@ -45,7 +45,7 @@
                                                     <?php
                                                         foreach (SpotManager::$current_spots_list as $uid => $spot){
                                                             if ($spot instanceof Spot){
-                                                                if ($spot->get_location()->get_country() === "United-States")
+                                                                if ($spot->get_location()->get_country() === "United-States" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
                                                                     echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
                                                             }
                                                         }
@@ -57,7 +57,7 @@
                                                     <?php
                                                         foreach (SpotManager::$current_spots_list as $uid => $spot){
                                                             if ($spot instanceof Spot){
-                                                                if ($spot->get_location()->get_country() === "France")
+                                                                if ($spot->get_location()->get_country() === "France" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
                                                                     echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
                                                             }
                                                         }
@@ -69,7 +69,7 @@
                                                     <?php
                                                         foreach (SpotManager::$current_spots_list as $uid => $spot){
                                                             if ($spot instanceof Spot){
-                                                                if ($spot->get_location()->get_country() === "England")
+                                                                if ($spot->get_location()->get_country() === "England" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
                                                                     echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
                                                             }
                                                         }
@@ -149,12 +149,15 @@
                 </div>
                 <div class="owl-carousel owl-theme">
                     <?php
-                        foreach (SpotManager::$current_spots_list as $uid => $spot){
+                        $spots = SpotManager::$current_spots_list;
+                        shuffle($spots);
+
+                        foreach ($spots as $uid => $spot){
                             if ($spot instanceof Spot){
                                 echo "
                                     <div class='item popular-item''>
                                         <div class='thumb'>
-                                            <img src='image/location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "/cover.jpg" . "' alt=''>
+                                            <img style='object-fit: cover; width:300px; height:200px;' src='image/location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "/cover.jpg" . "' alt=''>
                                             <div class='text-content'>
                                                 <h4> {$spot->get_name()} </h4>
                                                 <span> {$spot->get_location()->get_country()} </span>
@@ -227,40 +230,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="section-heading">
-                            <span> Your favorits </span>
-                            <h2> Spots that you added in your favorits list. </h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="service-item">
-                            <div class="icon">
-                            </div>
-                            <h4> Favori 1* </h4>
-                            <p> Description relative aux favoris </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="service-item">
-                            <div class="icon">
-                            </div>
-                            <h4> Favori 2* </h4>
-                            <p> Description relative aux favoris </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="service-item">
-                            <div class="icon">
-                            </div>
-                            <h4> Favori 3* </h4>
-                            <p> Description relative aux favoris </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
                         <div class="down-services">
                             <div class="row">
                                 <div class="col-md-5 col-md-offset-1">
@@ -281,11 +250,11 @@
                                             </li>
                                             <li>
                                                 <a> United-States </a>
-                                                <p>  </p>
+                                                <p> un text ici (idk) </p>
                                             </li>
                                             <li>
                                                 <a> England </a>
-                                                <p>  </p>
+                                                <p> un text ici (idk) </p>
                                             </li>
                                         </ul>
                                     </div>
