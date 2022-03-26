@@ -47,6 +47,13 @@ class Spot {
     /**
      * @return string
      */
+    public function as_path() : string {
+        return strtolower($this->get_location()->get_country()) . "/" . strtolower($this->get_location()->get_city()) . "/" . strtolower($this->get_name());
+    }
+
+    /**
+     * @return string
+     */
     public function tier_to_category() : string {
         switch ($this->tier){
             case 0:

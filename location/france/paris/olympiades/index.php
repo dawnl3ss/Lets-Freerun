@@ -47,7 +47,7 @@
                                                     foreach (SpotManager::$current_spots_list as $uid => $spots){
                                                         if ($spots instanceof Spot){
                                                             if ($spots->get_location()->get_country() === "United-States")
-                                                                echo "<li><a href='../../../../location/" . strtolower($spots->get_location()->get_country()) . "/" . strtolower($spots->get_location()->get_city()) . "/" . strtolower($spots->get_name()) . "?uid={$spots->get_uid()}" . "'> {$spots->get_name()} </a></li>";
+                                                                echo "<li><a href='../../../../location/{$spots->as_path()}/?uid={$spots->get_uid()}" . "'> {$spots->get_name()} </a></li>";
                                                         }
                                                     }
                                                     ?>
@@ -59,7 +59,7 @@
                                                     foreach (SpotManager::$current_spots_list as $uid => $spots){
                                                         if ($spots instanceof Spot){
                                                             if ($spots->get_location()->get_country() === "France")
-                                                                echo "<li><a href='../../../../location/" . strtolower($spots->get_location()->get_country()) . "/" . strtolower($spots->get_location()->get_city()) . "/" . strtolower($spots->get_name()) . "?uid={$spots->get_uid()}" . "'> {$spots->get_name()} </a></li>";
+                                                                echo "<li><a href='../../../../location/{$spots->as_path()}/?uid={$spots->get_uid()}" . "'> {$spots->get_name()} </a></li>";
                                                         }
                                                     }
                                                     ?>
@@ -71,7 +71,7 @@
                                                     foreach (SpotManager::$current_spots_list as $uid => $spots){
                                                         if ($spots instanceof Spot){
                                                             if ($spots->get_location()->get_country() === "England")
-                                                                echo "<li><a href='../../../../location/" . strtolower($spots->get_location()->get_country()) . "/" . strtolower($spots->get_location()->get_city()) . "/" . strtolower($spots->get_name()) . "?uid={$spots->get_uid()}" . "'> {$spots->get_name()} </a></li>";
+                                                                echo "<li><a href='../../../../location/{$spots->as_path()}/?uid={$spots->get_uid()}" . "'> {$spots->get_name()} </a></li>";
                                                         }
                                                     }
                                                     ?>

@@ -45,7 +45,7 @@
                                                         foreach (SpotManager::$current_spots_list as $uid => $spot){
                                                             if ($spot instanceof Spot){
                                                                 if ($spot->get_location()->get_country() === "United-States" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                    echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
+                                                                    echo "<li><a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
                                                             }
                                                         }
                                                     ?>
@@ -57,7 +57,7 @@
                                                         foreach (SpotManager::$current_spots_list as $uid => $spot){
                                                             if ($spot instanceof Spot){
                                                                 if ($spot->get_location()->get_country() === "France" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                    echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
+                                                                    echo "<li><a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
                                                             }
                                                         }
                                                     ?>
@@ -69,7 +69,7 @@
                                                         foreach (SpotManager::$current_spots_list as $uid => $spot){
                                                             if ($spot instanceof Spot){
                                                                 if ($spot->get_location()->get_country() === "England" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                    echo "<li><a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
+                                                                    echo "<li><a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
                                                             }
                                                         }
                                                     ?>
@@ -156,13 +156,13 @@
                                 echo "
                                     <div class='item popular-item''>
                                         <div class='thumb'>
-                                            <img style='object-fit: cover; width:300px; height:200px;' src='image/location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "/cover.jpg" . "' alt=''>
+                                            <img style='object-fit: cover; width:300px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
                                             <div class='text-content'>
                                                 <h4> {$spot->get_name()} </h4>
                                                 <span> {$spot->get_location()->get_country()} </span>
                                             </div>
                                             <div class='plus-button'>
-                                                <a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'><i class='fa fa-plus'></i></a>
+                                                <a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'><i class='fa fa-plus'></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -194,7 +194,7 @@
                                             <div class='col-md-4 col-sm-6 col-xs-12'>
                                                 <div class='featured-item'>
                                                     <div class='thumb'>
-                                                        <img src='image/location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "/cover.jpg' alt=''>
+                                                        <img src='image/location/{$spot->as_path()}/cover.jpg' alt=''>
                                                     </div>
                                                     <div class='down-content'>
                                                         <h4> {$spot->get_name()} </h4>
@@ -208,7 +208,7 @@
                                                             </div>
                                                             <div class='col-md-6'>
                                                                 <div class='text-button'>
-                                                                    <a href='location/" . strtolower($spot->get_location()->get_country()) . "/" . strtolower($spot->get_location()->get_city()) . "/" . strtolower($spot->get_name()) . "?uid={$spot->get_uid()}" . "'> See Details </a>
+                                                                    <a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> See Details </a>
                                                                 </div>
                                                             </div>
                                                         </div>
