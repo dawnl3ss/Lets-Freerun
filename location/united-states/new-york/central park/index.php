@@ -1,7 +1,6 @@
 <?php
     require_once $_SERVER["DOCUMENT_ROOT"] . "/Lets-Freerun/app/Autoloader.php";
     __load_all_classes();
-    __init_sql();
     __load_all_spots();
     $spot = SpotManager::$current_spots_list[(int)$_GET["uid"]];
 ?>

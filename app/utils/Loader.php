@@ -8,6 +8,8 @@ function __init_sql(){
 }
 
 function __load_all_spots(){
+    __init_sql();
+
     foreach (SQLManager::get_data("SELECT * FROM spots") as $key => $value){
         $decoded = decode_data($value["location"]);
         SpotManager::$current_spots_list[$value["uid"]] = new Spot($value["name"], $value["tier"], new Location($decoded[0], $decoded[1], $decoded[2], (float)$decoded[3], (float)$decoded[4]), new UID((int)$value["uid"]));

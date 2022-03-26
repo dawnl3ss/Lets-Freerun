@@ -1,7 +1,10 @@
 export function display_map(latitude, longitude, name) {
     let marker = new google.maps.Marker({
         map: new google.maps.Map(document.getElementById("map"), {
-            center: {lat: latitude, lng: longitude},
+            center: {
+                lat: latitude,
+                lng: longitude
+            },
             zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }),

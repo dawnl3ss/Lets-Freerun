@@ -1,7 +1,6 @@
 <?php
     require_once "app/Autoloader.php";
     __load_all_classes();
-    __init_sql();
     __load_all_spots();
 ?>
 <html>
