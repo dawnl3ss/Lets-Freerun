@@ -36,7 +36,7 @@
                             <nav id="primary-nav" class="dropdown cf">
                                 <span><a href="../Lets-Freerun"><img class="logo" src="image/logo.png" alt="logo"></span></a>
                                 <ul class="dropdown menu">
-                                    <li class='active'><a class="scrollTo" data-scrollTo="popular" href="#"> Popular </a></li>
+                                    <li class='active'><a href="./"> Home </a></li>
                                     <li><a href="#"> Most Visited </a>
                                         <ul class="sub-menu">
                                             <li><a href="#"> United-States </a>
@@ -77,7 +77,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a class="scrollTo" data-scrollTo="favorits" href="#"> Your favorits </a></li>
+                                    <li><a class="scrollTo" data-scrollTo="favorites" href="#"> Your favorites </a></li>
                                     <li><a class="scrollTo" data-scrollTo="contact" href="#"> Contact Us </a></li>
                                 </ul>
                             </nav>
@@ -94,10 +94,10 @@
                     <div class="col-md-10 col-md-offset-1">
                         <div class="banner-caption">
                             <div class="line-dec"></div>
-                            <h1> Your favorits spots </h1>
-                            <span> List of spots that you added in your favorits list. </span>
+                            <h1> Your favorites spots </h1>
+                            <span> List of spots that you added in your favorites list. </span>
                             <div class="blue-button">
-                                <a class="scrollTo" data-scrollTo="favorits" href="#"> Discover Favorits </a>
+                                <a class="scrollTo" data-scrollTo="favorites" href="#"> Discover favorites </a>
                             </div>
                         </div>
                     </div>
@@ -105,37 +105,61 @@
             </div>
         </section>
 
-        <section class="favorits" id="favorits">
-            <div class="container-fluid">
+
+        <section class="featured-places" id="favorites">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-heading">
-                            <span> Favorits </span>
-                            <h2> List of your favorits dpots. </h2>
+                            <span> favorites </span>
+                            <h2> Your favorites spots. </h2>
                         </div>
                     </div>
                 </div>
-                <div class="owl-carousel owl-theme">
+                <div class='row'>
                     <?php
-                        $spots = SpotManager::$current_spots_list;
-                        shuffle($spots);
+                        $cookie = $_COOKIE["spots"];
+                        $spot_uids = explode(",", $cookie);
 
-                        foreach ($spots as $uid => $spot){
+                        foreach (SpotManager::$current_spots_list as $uid => $spot) {
                             if ($spot instanceof Spot){
-                                echo "
-                                    <div class='item popular-item'>
-                                        <div class='thumb'>
-                                            <img style='object-fit: cover; width:300px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
-                                            <div class='text-content'>
-                                                <h4> {$spot->get_name()} </h4>
-                                                <span> {$spot->get_location()->get_country()} </span>
-                                            </div>
-                                            <div class='plus-button'>
-                                                
+                                if (in_array((string)$uid, $spot_uids)){
+                                    echo "
+                                        <div class='col-md-4 col-sm-6 col-xs-12'>
+                                            <div class='featured-item'>
+                                                <div class='thumb'>
+                                                    <img style='object-fit: cover; width:1000px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg' alt=''>
+                                                    <div class='overlay-content'><ul><li><i class='fa fa-star'></i></li></ul></div>
+                                                </div>
+                                                <div class='down-content'>
+                                                    <h4> " . $spot->get_name() . " </h4>
+                                                    <span> " . ucfirst($spot->tier_to_category()) . " </span>
+                                                    <p> (description du spot) </p>
+                                                    <div class='row'>
+                                                        <div class='col-md-6 first-button'>
+                                                            <div class='text-button'>
+                                                                <a href='' id='fav-{$spot->get_uid()}'> Remove from favorites </a>
+                                                                <script type='module'>
+                                                                    import { delete_favorites } from './app/spot/favorites/fav-manager.js';
+                                                                    
+                                                                    document.getElementById('fav-{$spot->get_uid()}').onclick = function (){
+                                                                         delete_favorites('" . $spot->get_uid() . "')
+                                                                         window.location.href = 'favorites.php';
+                                                                    }
+                                                                </script>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-md-6'>
+                                                            <div class='text-button'>
+                                                                <a href='location/{$spot->as_path()}/?uid={$spot->get_uid()}'> See details </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ";
+                                    ";
+                                }
                             }
                         }
                     ?>
@@ -143,7 +167,7 @@
             </div>
         </section>
 
-        <section class="our-services" id="favorits">
+        <section class="our-services" id="description">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -207,7 +231,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <ul>
-                                        <li><a href="#favorits" class="scrollTo" data-scrollTo="favorits"><i class="fa fa-stop"></i> My Favorits </a></li>
+                                        <li><a href="#favorites" class="scrollTo" data-scrollTo="favorites"><i class="fa fa-stop"></i> My favorites </a></li>
                                         <li><a href=""><i class="fa fa-stop"></i> How It Works? </a></li>
                                     </ul>
                                 </div>

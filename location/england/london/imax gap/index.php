@@ -38,7 +38,7 @@
                             <nav id="primary-nav" class="dropdown cf">
                                 <span><a href="../../../../../Lets-Freerun"><img class="logo" src="../../../../image/logo.png" alt="logo"></span></a>
                                 <ul class="dropdown menu">
-                                    <li class='active'><a class="scrollTo" data-scrollTo="popular" href="#"> Popular </a></li>
+                                    <li class='active'><a href="../../../../"> Home </a></li>
                                     <li><a href="#"> Most Visited </a>
                                         <ul class="sub-menu">
                                             <li><a href="#"> United-States </a>

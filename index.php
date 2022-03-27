@@ -77,8 +77,8 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a class="scrollTo" data-scrollTo="favorits" href="#"> Your favorits </a></li>
-                                    <li><a class="scrollTo" data-scrollTo="contact" href="#"> Contact Us </a></li>
+                                    <li><a href="favorites.php"> Your favorites </a></li>
+                                    <li><a class="scrollTo" data-scrollTo="contact" href="#contact"> Contact Us </a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -164,14 +164,13 @@
                                             <div class='plus-button'>
                                                 <i class='fa fa-plus' id='plus-{$spot->get_uid()}'></i>
                                                 <script type='module'>
-                                                    import { add_favorits } from './app/spot/favorits/fav-manager.js';
+                                                    import { add_favorites } from './app/spot/favorites/fav-manager.js';
                                                     
                                                     document.getElementById('plus-{$spot->get_uid()}').onclick = function (){
-                                                         add_favorits('" . $spot->get_uid() . "')
-                                                         window.location.href = 'favorits.php';
+                                                         add_favorites('" . $spot->get_uid() . "')
+                                                         window.location.href = 'favorites.php';
                                                     }
                                                 </script>
-                                                
                                             </div>
                                         </div>
                                     </div>
@@ -234,7 +233,7 @@
             </section>
         <?php endif; ?>
 
-        <section class="our-services" id="favorits">
+        <section class="our-services" id="favorites">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -298,7 +297,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <ul>
-                                        <li><a href="#favorits" class="scrollTo" data-scrollTo="favorits"><i class="fa fa-stop"></i> My Favorits </a></li>
+                                        <li><a href="favorites.php"><i class="fa fa-stop"></i> My favorites </a></li>
                                         <li><a href=""><i class="fa fa-stop"></i> How It Works? </a></li>
                                     </ul>
                                 </div>
@@ -339,4 +338,5 @@
         <script src="style/js/plugins.js"></script>
         <script src="style/js/main.js"></script>
     </body>
+</html>
 </html>

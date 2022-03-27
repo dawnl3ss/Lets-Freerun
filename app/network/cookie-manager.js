@@ -2,7 +2,7 @@
  * @param name
  * @param value
  */
-function set_cookie(name, value) {
+function set_cookie(name, value){
     document.cookie = name + "=" + (value || "") + "; path=/";
 }
 
@@ -10,7 +10,7 @@ function set_cookie(name, value) {
  * @param name
  * @returns {string|null}
  */
-function get_cookie(name) {
+function get_cookie(name){
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
 
