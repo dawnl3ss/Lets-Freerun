@@ -330,7 +330,7 @@ section.banner {
   background-color: #4883ff;
 }
 
-.banner .banner-caption h2 {
+.banner .banner-caption h2, h1 {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 42px;
@@ -1218,4 +1218,89 @@ footer .contact-info ul li a {
   object-fit: cover;
   width:300px;
   height:200px;
+}
+
+.favorits .owl-nav {
+  display: none;
+}
+
+.favorits .owl-dots {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.favorits .owl-dots .owl-dot span  {
+  width: 12px;
+  height: 12px;
+  background-color: #cdcdcd!important;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 3px;
+}
+
+.favorits .owl-dots .active span {
+  background-color: #4883ff!important;
+}
+
+.favorits .owl-dots button {
+  outline: none;
+}
+
+.favorits .popular-item .thumb {
+  position: relative;
+}
+
+.favorits .popular-item .thumb img {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.favorits .popular-item .thumb .text-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9;
+  color: #fff;
+}
+
+.favorits .popular-item .thumb .text-content h4 {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.favorits .popular-item .thumb .text-content span {
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.favorits .popular-item .thumb .plus-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9;
+}
+
+
+.favorits .popular-item .thumb .plus-button i {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  transition: all 0.5s;
+}
+
+.favorits .popular-item .thumb .plus-button i:hover {
+  background-color: rgba(250,250,250,0.3);
 }

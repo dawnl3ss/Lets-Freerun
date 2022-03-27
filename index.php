@@ -162,7 +162,16 @@
                                                 <span> {$spot->get_location()->get_country()} </span>
                                             </div>
                                             <div class='plus-button'>
-                                                <a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'><i class='fa fa-plus'></i></a>
+                                                <i class='fa fa-plus' id='plus-{$spot->get_uid()}'></i>
+                                                <script type='module'>
+                                                    import { add_favorits } from './app/spot/favorits/fav-manager.js';
+                                                    
+                                                    document.getElementById('plus-{$spot->get_uid()}').onclick = function (){
+                                                         add_favorits('" . $spot->get_uid() . "')
+                                                         window.location.href = 'favorits.php';
+                                                    }
+                                                </script>
+                                                
                                             </div>
                                         </div>
                                     </div>
