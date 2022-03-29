@@ -118,50 +118,52 @@
                 </div>
                 <div class='row'>
                     <?php
-                        $cookie = $_COOKIE["spots"];
+                        $cookie = $_COOKIE["favorites"];
                         $spot_uids = explode(",", $cookie);
 
-                        foreach (SpotManager::$current_spots_list as $uid => $spot) {
-                            if ($spot instanceof Spot){
-                                if (in_array((string)$uid, $spot_uids)){
-                                    echo "
-                                        <div class='col-md-4 col-sm-6 col-xs-12'>
-                                            <div class='featured-item'>
-                                                <div class='thumb'>
-                                                    <img style='object-fit: cover; width:1000px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg' alt=''>
-                                                    <div class='overlay-content'><ul><li><i class='fa fa-star'></i></li></ul></div>
-                                                </div>
-                                                <div class='down-content'>
-                                                    <h4> " . $spot->get_name() . " </h4>
-                                                    <span> " . ucfirst($spot->tier_to_category()) . " </span>
-                                                    <p> (description du spot) </p>
-                                                    <div class='row'>
-                                                        <div class='col-md-6 first-button'>
-                                                            <div class='text-button'>
-                                                                <a href='' id='fav-{$spot->get_uid()}'> Remove from favorites </a>
-                                                                <script type='module'>
-                                                                    import { delete_favorites } from './app/spot/favorites/fav-manager.js';
-                                                                    
-                                                                    document.getElementById('fav-{$spot->get_uid()}').onclick = function (){
-                                                                         delete_favorites('" . $spot->get_uid() . "')
-                                                                         window.location.href = 'favorites.php';
-                                                                    }
-                                                                </script>
+                        if ($cookie !== "") {
+                            foreach (SpotManager::$current_spots_list as $uid => $spot) {
+                                if ($spot instanceof Spot) {
+                                    if (in_array((string)$uid, $spot_uids)) {
+                                        echo "
+                                            <div class='col-md-4 col-sm-6 col-xs-12'>
+                                                <div class='featured-item'>
+                                                    <div class='thumb'>
+                                                        <img style='object-fit: cover; width:1000px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg' alt=''>
+                                                        <div class='overlay-content'><ul><li><i class='fa fa-star'></i></li></ul></div>
+                                                    </div>
+                                                    <div class='down-content'>
+                                                        <h4> " . $spot->get_name() . " </h4>
+                                                        <span> " . ucfirst($spot->tier_to_category()) . " </span>
+                                                        <p> (description du spot) </p>
+                                                        <div class='row'>
+                                                            <div class='col-md-6 first-button'>
+                                                                <div class='text-button'>
+                                                                    <a href='' id='fav-{$spot->get_uid()}'> Remove from favorites </a>
+                                                                    <script type='module'>
+                                                                        import { delete_favorites } from './app/spot/favorites/fav-manager.js';
+                                                                        
+                                                                        document.getElementById('fav-{$spot->get_uid()}').onclick = function (){
+                                                                             delete_favorites('" . $spot->get_uid() . "')
+                                                                             window.location.href = 'favorites.php';
+                                                                        }
+                                                                    </script>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class='col-md-6'>
-                                                            <div class='text-button'>
-                                                                <a href='location/{$spot->as_path()}/?uid={$spot->get_uid()}'> See details </a>
+                                                            <div class='col-md-6'>
+                                                                <div class='text-button'>
+                                                                    <a href='location/{$spot->as_path()}/?uid={$spot->get_uid()}'> See details </a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    ";
+                                        ";
+                                    }
                                 }
                             }
-                        }
+                        } else echo "<h4 style='text-align: center'> You have not added any spot. </h4>";
                     ?>
                 </div>
             </div>
@@ -271,5 +273,9 @@
         <script src="style/js/datepicker.js"></script>
         <script src="style/js/plugins.js"></script>
         <script src="style/js/main.js"></script>
+        <script type='module'>
+            import { set_cookie, cookie_exist } from './app/network/cookie-manager.js';
+            if (!cookie_exist("favorites")) set_cookie("favorites", "");
+        </script>
     </body>
 </html>

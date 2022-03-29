@@ -27,8 +27,7 @@ function get_cookie(name){
  * @returns {boolean}
  */
 function cookie_exist(name){
-    if (document.cookie.indexOf(name + "=") === -1) return false;
-    else return true;
+    return document.cookie.indexOf(name + "=") !== -1;
 }
 
 export { get_cookie, set_cookie, cookie_exist }

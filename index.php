@@ -329,7 +329,7 @@
         <div class="sub-footer">
             <p> Copyright &copy; Lets-Freerun 2022 </p>
         </div>
-    
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
         <script src="style/js/vendor/jquery-1.11.2.min.js"></script>
     
@@ -337,6 +337,9 @@
         <script src="style/js/datepicker.js"></script>
         <script src="style/js/plugins.js"></script>
         <script src="style/js/main.js"></script>
+        <script type='module'>
+            import { set_cookie, cookie_exist } from './app/network/cookie-manager.js';
+            if (!cookie_exist("favorites")) set_cookie("favorites", "");
+        </script>
     </body>
-</html>
 </html>
