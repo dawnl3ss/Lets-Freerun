@@ -27,66 +27,7 @@
     </head>
 
     <body>
-        <div class="wrap">
-            <header id="header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button id="primary-nav-button" type="button"> Menu </button>
-                            <nav id="primary-nav" class="dropdown cf">
-                                <span><a href="../Lets-Freerun"><img class="logo" src="image/logo.png" alt="logo"></span></a>
-                                <ul class="dropdown menu">
-                                    <li class='active'><a href="./"> Home </a></li>
-                                    <li><a href="#"> Most Visited </a>
-                                        <ul class="sub-menu">
-                                            <li><a href="#"> United-States </a>
-                                                <ul class="sub-menu">
-                                                    <?php
-                                                    foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                                        if ($spot instanceof Spot){
-                                                            if ($spot->get_location()->get_country() === "United-States" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                echo "<li><a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
-                                                        }
-                                                    }
-                                                    ?>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#"> France </a>
-                                                <ul class="sub-menu">
-                                                    <?php
-                                                    foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                                        if ($spot instanceof Spot){
-                                                            if ($spot->get_location()->get_country() === "France" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                echo "<li><a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
-                                                        }
-                                                    }
-                                                    ?>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#"> England </a>
-                                                <ul class="sub-menu">
-                                                    <?php
-                                                    foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                                        if ($spot instanceof Spot){
-                                                            if ($spot->get_location()->get_country() === "England" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                echo "<li><a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
-                                                        }
-                                                    }
-                                                    ?>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="scrollTo" data-scrollTo="favorites" href="#"> Your favorites </a></li>
-                                    <li><a class="scrollTo" data-scrollTo="contact" href="#"> Contact Us </a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </div>
-
+        <?php require_once "view/main-nav-bar.php" ?>
 
         <section class="banner" id="top">
             <div class="container">
@@ -145,7 +86,6 @@
                                                                         
                                                                         document.getElementById('fav-{$spot->get_uid()}').onclick = function (){
                                                                              delete_favorites('" . $spot->get_uid() . "')
-                                                                             window.location.href = 'favorites.php';
                                                                         }
                                                                     </script>
                                                                 </div>
@@ -209,62 +149,7 @@
             </div>
         </section>
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="about-veno">
-                            <div class="logo">
-                                <img src="image/footer_logo.png" alt="footer logo">
-                            </div>
-                            <p> Lets-Freerun is a website fully developped by me, Neptune, during my free time. If you have any request or idea just contact me. </p>
-                            <ul class="social-icons">
-                                <li>
-                                    <a href="https://github.com/Neptune-IT/Lets-Freerun"><i class="fa fa-github center"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="useful-links">
-                            <div class="footer-heading">
-                                <h4> Useful Links </h4>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ul>
-                                        <li><a href="#favorites" class="scrollTo" data-scrollTo="favorites"><i class="fa fa-stop"></i> My favorites </a></li>
-                                        <li><a href=""><i class="fa fa-stop"></i> How It Works? </a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <ul>
-                                        <li><a href=""><i class="fa fa-stop"></i> More About Us </a></li>
-                                        <li><a  href="#contact" class="scrollTo" data-scrollTo="contact"><i class="fa fa-stop"></i> Contact Us </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="contact" class="col-md-3">
-                        <div class="contact-info">
-                            <div class="footer-heading">
-                                <h4> Contact Information </h4>
-                            </div>
-                            <p> Do you have a question ? A request ? Contact us with : </p>
-                            <ul>
-                                <li><span> Email: </span><a>lets-freerun@protonmail.com</a></li>
-                                <li><span> Address: </span><a href="">lets-freerun.xyz</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <div class="sub-footer">
-            <p> Copyright &copy; Lets-Freerun 2022 </p>
-        </div>
+        <?php require_once "view/footer.php"; ?>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
         <script src="style/js/vendor/jquery-1.11.2.min.js"></script>

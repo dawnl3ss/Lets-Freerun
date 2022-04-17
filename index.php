@@ -27,66 +27,7 @@
     </head>
 
     <body>
-        <div class="wrap">
-            <header id="header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button id="primary-nav-button" type="button"> Menu </button>
-                            <nav id="primary-nav" class="dropdown cf">
-                                <span><a href="../Lets-Freerun"><img class="logo" src="image/logo.png" alt="logo"></span></a>
-                                <ul class="dropdown menu">
-                                    <li class='active'><a class="scrollTo" data-scrollTo="popular" href="#"> Popular </a></li>
-                                    <li><a href="#"> Most Visited </a>
-                                        <ul class="sub-menu">
-                                            <li><a href="#"> United-States </a>
-                                                <ul class="sub-menu">
-                                                    <?php
-                                                        foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                                            if ($spot instanceof Spot){
-                                                                if ($spot->get_location()->get_country() === "United-States" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                    echo "<li><a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
-                                                            }
-                                                        }
-                                                    ?>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#"> France </a>
-                                                <ul class="sub-menu">
-                                                    <?php
-                                                        foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                                            if ($spot instanceof Spot){
-                                                                if ($spot->get_location()->get_country() === "France" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                    echo "<li><a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
-                                                            }
-                                                        }
-                                                    ?>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#"> England </a>
-                                                <ul class="sub-menu">
-                                                    <?php
-                                                        foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                                            if ($spot instanceof Spot){
-                                                                if ($spot->get_location()->get_country() === "England" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                    echo "<li><a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> {$spot->get_name()} </a></li>";
-                                                            }
-                                                        }
-                                                    ?>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="favorites.php"> Your favorites </a></li>
-                                    <li><a class="scrollTo" data-scrollTo="contact" href="#contact"> Contact Us </a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </div>
-
+        <?php require_once "view/main-nav-bar.php" ?>
 
         <section class="banner" id="top">
             <div class="container">
@@ -273,62 +214,106 @@
             </div>
         </section>
 
-        <footer>
+        <section class="contact down-services" id="contact">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="about-veno">
-                            <div class="logo">
-                                <img src="image/footer_logo.png" alt="footer logo">
-                            </div>
-                            <p> Lets-Freerun is a website fully developped by me, Neptune, during my free time. If you have any request or idea just contact me. </p>
-                            <ul class="social-icons">
-                                <li>
-                                    <a href="https://github.com/Neptune-IT/Lets-Freerun"><i class="fa fa-github center"></i></a>
-                                </li>
-                            </ul>
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="wrapper">
+                        <div class="section-heading">
+                            <span> Add a Spot </span>
+                            <h2> You know a good spot around you and you wanna add it ? Let's request it with the form below ! </h2>
                         </div>
+                        <button id="modBtn" class="modal-btn"> Add ! </button>
                     </div>
-                    <div class="col-md-4">
-                        <div class="useful-links">
-                            <div class="footer-heading">
-                                <h4> Useful Links </h4>
-                            </div>
+                    <div id="modal" class="modal">
+                        <div class="modal-content">
+                            <div class="close fa fa-close"></div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <ul>
-                                        <li><a href="favorites.php"><i class="fa fa-stop"></i> My favorites </a></li>
-                                        <li><a href=""><i class="fa fa-stop"></i> How It Works? </a></li>
-                                    </ul>
+                                <div class="col-md-8">
+                                    <div class="left-content">
+                                        <form class="row" action="" method="post">
+                                            <div class="col-md-12">
+                                                <div class="section-heading">
+                                                    <span> Add a Spot </span>
+                                                    <h2> Fullfill the form </h2>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <input name="name" type="text" class="form-control" id="name" placeholder="Spot name..." required="">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <input name="country" type="text" class="form-control" id="subject" placeholder="Country..." required="">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <input name="city" type="text" class="form-control" id="subject" placeholder="City..." required="">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <input name="street" type="text" class="form-control" id="subject" placeholder="Street... (not necessarily required)">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <input name="latitude" type="number" class="form-control" id="subject" placeholder="Latitude..." step="0.1" required="">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <input name="longitude" type="number" class="form-control" id="subject" placeholder="Longitude..." step="0.1" required="">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <p> Pictures </p>
+                                                    <input name="pictures" type="file" class="form-control" id="subject" value="Pictures..." accept="image/*" multiple="multiple">
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <fieldset>
+                                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Description..." required=""></textarea>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <fieldset>
+                                                    <button type="submit" id="form-submit" class="btn"> Send Request </button>
+                                                </fieldset>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <ul>
-                                        <li><a href=""><i class="fa fa-stop"></i> More About Us </a></li>
-                                        <li><a  href="#contact" class="scrollTo" data-scrollTo="contact"><i class="fa fa-stop"></i> Contact Us </a></li>
-                                    </ul>
+                                <div class="col-md-4">
+                                    <div class="right-content">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="content">
+                                                    <div class="section-heading">
+                                                        <h2> Process & rules : </h2>
+                                                    </div>
+                                                    <p> Your request will be examinated within the 7 days. If all the details are okay, your spot will be added to our list. </p>
+                                                    <ul>
+                                                        <li> - Don't put wrong information intentionaly. </li>
+                                                        <li> - Don't try to hack/bypass website security. </li>
+                                                        <li> - Don't choose non-appropriated pictures. </li>
+                                                        <li> - Don't choose pictures which don't belong to you. </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div id="contact" class="col-md-3">
-                        <div class="contact-info">
-                            <div class="footer-heading">
-                                <h4> Contact Information </h4>
-                            </div>
-                            <p> Do you have a question ? A request ? Contact us with : </p>
-                            <ul>
-                                <li><span> Email: </span><a>lets-freerun@protonmail.com</a></li>
-                                <li><span> Address: </span><a href="">lets-freerun.xyz</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-    
-        <div class="sub-footer">
-            <p> Copyright &copy; Lets-Freerun 2022 </p>
-        </div>
+        </section>
+
+        <?php require_once "view/footer.php"; ?>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
         <script src="style/js/vendor/jquery-1.11.2.min.js"></script>
