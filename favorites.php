@@ -49,15 +49,13 @@
 
         <section class="featured-places" id="favorites">
             <div class="container">
-                <div class="row">
+                <div class='row'>
                     <div class="col-md-12">
                         <div class="section-heading">
-                            <span> favorites </span>
+                            <span> Favorites </span>
                             <h2> Your favorites spots. </h2>
                         </div>
                     </div>
-                </div>
-                <div class='row'>
                     <?php
                         $cookie = $_COOKIE["favorites"];
                         $spot_uids = explode(",", $cookie);
@@ -85,7 +83,7 @@
                                                                         import { delete_favorites } from './app/spot/favorites/fav-manager.js';
                                                                         
                                                                         document.getElementById('fav-{$spot->get_uid()}').onclick = function (){
-                                                                             delete_favorites('" . $spot->get_uid() . "')
+                                                                             delete_favorites('" . $spot->get_uid() . "');
                                                                         }
                                                                     </script>
                                                                 </div>

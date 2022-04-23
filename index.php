@@ -123,56 +123,53 @@
             </div>
         </section>
 
-        <?php if (isset($_GET["country"])): ?>
-            <section class="featured-places" id="search">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="section-heading">
-                                <h2> Your search </h2><br>
-                                <span> <?php echo "Country : " . $_GET["country"] . " | City : " . $_GET["city"]; ?> </span>
-                            </div>
+        <section class="popular-places down-services" id="for-you-places">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <span> For You Spots </span>
+                            <h2> A list of spots from your country. </h2>
                         </div>
                     </div>
-                    <div class="row">
-                        <?php
-                            foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                if ($spot instanceof  Spot){
-                                    if (strtolower($spot->get_location()->get_country()) === strtolower($_GET["country"]) && strtolower($spot->get_location()->get_city()) === strtolower($_GET["city"]) && $spot->get_tier() === (int)$_GET["category"]){
-                                        echo "
-                                            <div class='col-md-4 col-sm-6 col-xs-12'>
-                                                <div class='featured-item'>
-                                                    <div class='thumb'>
-                                                        <img src='image/location/{$spot->as_path()}/cover.jpg' alt=''>
-                                                    </div>
-                                                    <div class='down-content'>
-                                                        <h4> {$spot->get_name()} </h4>
-                                                        <span> " . ucfirst($spot->tier_to_category()) . " </span>
-                                                        <p> Description du spot </p>
-                                                        <div class='row'>
-                                                            <div class='col-md-6 first-button'>
-                                                                <div class='text-button'>
-                                                                    <a href='#'> Add to favorites </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class='col-md-6'>
-                                                                <div class='text-button'>
-                                                                    <a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> See Details </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ";
-                                    }
-                                }
-                            }
-                        ?>
-                    </div>
                 </div>
-            </section>
-        <?php endif; ?>
+                <div class="owl-carousel owl-theme">
+                    <?php
+                    $spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
+                        return strtolower($spot->get_location()->get_country()) === "france"/*strtolower(get_current_country($_SERVER["REMOTE_ADDR"]))*/;
+                    });
+                    shuffle($spots);
+
+                    foreach ($spots as $uid => $spot){
+                        if ($spot instanceof Spot){
+                            echo "
+                                <div class='item popular-item''>
+                                    <div class='thumb'>
+                                        <img style='object-fit: cover; width:300px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
+                                        <div class='text-content'>
+                                            <h4> {$spot->get_name()} </h4>
+                                            <span> {$spot->get_location()->get_country()} </span>
+                                        </div>
+                                        <div class='plus-button'>
+                                            <i class='fa fa-plus' id='plus-{$spot->get_uid()}'></i>
+                                            <script type='module'>
+                                                import { add_favorites } from './app/spot/favorites/fav-manager.js';
+                                                    
+                                                document.getElementById('plus-{$spot->get_uid()}').onclick = function (){
+                                                    add_favorites('" . $spot->get_uid() . "')
+                                                    window.location.href = 'favorites.php';
+                                                }
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            ";
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </section>
 
         <section class="our-services" id="favorites">
             <div class="container">
@@ -194,15 +191,15 @@
                                         <ul class="accordion">
                                             <li>
                                                 <a> France </a>
-                                                <p> As you know (maybe), Parkour was invented in France, during 1980s. This country </p>
+                                                <p> As you know (maybe), Parkour was invented in France, during 1980s by David Belle. France gather a lot of very famous spots, particullarly in Paris & Evry. </p>
                                             </li>
                                             <li>
                                                 <a> United-States </a>
-                                                <p> un text ici (idk) </p>
+                                                <p> A lot of traceurs come from United-States. This country contains a lot of interressant places to practice Parkour because of the number of big cities. </p>
                                             </li>
                                             <li>
                                                 <a> England </a>
-                                                <p> un text ici (idk) </p>
+                                                <p> London has the most iconic gap in Parkour. It is called the IMAX Gap and is located in London. Besides, the famous YouTube parkour group Storror comes from England. </p>
                                             </li>
                                         </ul>
                                     </div>
@@ -259,18 +256,12 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <fieldset>
-                                                    <input name="latitude" type="number" class="form-control" id="subject" placeholder="Latitude..." step="0.1" required="">
+                                                    <input name="latitude" type="number" class="form-control" id="subject" placeholder="Latitude..." step="0.00000000000001" min="-90" max="90" required="">
                                                 </fieldset>
                                             </div>
                                             <div class="col-md-6">
                                                 <fieldset>
-                                                    <input name="longitude" type="number" class="form-control" id="subject" placeholder="Longitude..." step="0.1" required="">
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <fieldset>
-                                                    <p> Pictures </p>
-                                                    <input name="pictures" type="file" class="form-control" id="subject" value="Pictures..." accept="image/*" multiple="multiple">
+                                                    <input name="longitude" type="number" class="form-control" id="subject" placeholder="Longitude..." step="0.00000000000001" min="-180" max="180" required="">
                                                 </fieldset>
                                             </div>
                                             <div class="col-md-12">
