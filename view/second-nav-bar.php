@@ -5,12 +5,12 @@
                 <div class="col-md-12">
                     <button id="primary-nav-button" type="button"> Menu </button>
                     <span>
-                        <a href="../../../../../Lets-Freerun"><img class="logo" src="../../../../image/logo.png" alt="logo"></a>
+                        <a href="../../../../../../Lets-Freerun"><img class="logo" src="../../../../../image/logo.png" alt="logo"></a>
                     </span>
                     <nav id="primary-nav" class="dropdown cf">
                         <ul class="dropdown menu">
                             <li class='active'>
-                                <a href="../../../../"> Home </a>
+                                <a href="../../../../../"> Home </a>
                             </li>
                             <li>
                                 <a href=""> Most Visited </a>
@@ -57,10 +57,10 @@
                                 </ul>
                             </li>
                             <li>
-                                <a class="scrollTo" data-scrollTo="favorits" href="#"> Your favorits </a>
+                                <a class="scrollTo" data-scrollTo="favorits" href="../../../../../favorites.php"> Your favorits </a>
                             </li>
                             <li>
-                                <a class="scrollTo" data-scrollTo="contact" href="#"> Contact Us </a>
+                                <a class="scrollTo" data-scrollTo="contact" href=""> Contact Us </a>
                             </li>
                         </ul>
                     </nav>

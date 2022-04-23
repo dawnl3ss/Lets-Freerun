@@ -38,7 +38,7 @@
                             <h2> Find the best Parkour spot ! </h2>
                             <span> A lot of spots are available here. </span>
                             <div class="blue-button">
-                                <a class="scrollTo" data-scrollTo="popular" href="#"> Discover Spots </a>
+                                <a class="scrollTo" data-scrollTo="popular" href=""> Discover Spots </a>
                             </div>
                         </div>
                         <div class="submit-form">
