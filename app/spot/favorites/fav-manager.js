@@ -1,4 +1,4 @@
-import { set_cookie, get_cookie, cookie_exist } from "./../../network/cookie-manager.js";
+import { set_cookie, get_cookie, cookie_exist } from "../../network/cookie/cookie-manager.js";
 
 /**
  * @param uid

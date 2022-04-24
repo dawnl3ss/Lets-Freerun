@@ -11,6 +11,6 @@ __load_all_spots();
     new UID()
 ));*/
 
-debug(array_filter(SpotManager::$current_spots_list, function (Spot $spot){
+/*debug(array_filter(SpotManager::$current_spots_list, function (Spot $spot){
     return $spot->get_tier() === TieredSpot::SPOT_UNCOMMON;
-}));
+}));*/

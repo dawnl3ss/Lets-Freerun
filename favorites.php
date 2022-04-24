@@ -157,7 +157,7 @@
         <script src="style/js/plugins.js"></script>
         <script src="style/js/main.js"></script>
         <script type='module'>
-            import { set_cookie, cookie_exist } from './app/network/cookie-manager.js';
+            import { set_cookie, cookie_exist } from './app/network/cookie/cookie-manager.js';
             if (!cookie_exist("favorites")) set_cookie("favorites", "");
         </script>
     </body>

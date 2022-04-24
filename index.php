@@ -2,6 +2,12 @@
     require_once "app/Autoloader.php";
     __load_all_classes();
     __load_all_spots();
+
+    if (isset($_POST["submit-request"])){
+        $_NPOST = array_map(function ($value){ return xss_counter($value); }, $_POST);
+        $spot = new Spot($_NPOST["name"], TieredSpot::SPOT_ALL, new Location($_NPOST["country"], $_NPOST["city"], $_NPOST["street"], (float)$_NPOST["latitude"], (float)$_NPOST["longitude"]), new UID());
+        (new SQLSession())->write("INSERT INTO `spot_requests`(name, location, description) VALUES ('{$spot->get_name()}', '{$spot->get_location()->encode()}', '" . $_NPOST["description"] . "')");
+    }
 ?>
 <html>
     <head>
@@ -108,7 +114,7 @@
                                                     import { add_favorites } from './app/spot/favorites/fav-manager.js';
                                                     
                                                     document.getElementById('plus-{$spot->get_uid()}').onclick = function (){
-                                                         add_favorites('" . $spot->get_uid() . "')
+                                                         add_favorites('" . $spot->get_uid() . "');
                                                          window.location.href = 'favorites.php';
                                                     }
                                                 </script>
@@ -266,12 +272,12 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <fieldset>
-                                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Description..." required=""></textarea>
+                                                    <textarea name="description" rows="6" class="form-control" id="message" placeholder="Description..." required=""></textarea>
                                                 </fieldset>
                                             </div>
                                             <div class="col-md-12">
                                                 <fieldset>
-                                                    <button type="submit" id="form-submit" class="btn"> Send Request </button>
+                                                    <button name="submit-request" type="submit" id="form-submit" class="btn"> Send Request </button>
                                                 </fieldset>
                                             </div>
                                         </form>
@@ -314,7 +320,7 @@
         <script src="style/js/plugins.js"></script>
         <script src="style/js/main.js"></script>
         <script type='module'>
-            import { set_cookie, cookie_exist } from './app/network/cookie-manager.js';
+            import { set_cookie, cookie_exist } from './app/network/cookie/cookie-manager.js';
             if (!cookie_exist("favorites")) set_cookie("favorites", "");
         </script>
     </body>
