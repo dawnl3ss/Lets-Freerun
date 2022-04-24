@@ -4,9 +4,11 @@
     __load_all_spots();
 
     if (isset($_POST["submit-request"])){
-        $_NPOST = array_map(function ($value){ return xss_counter($value); }, $_POST);
+        $_NPOST = array_map(function ($value){
+            return xss_counter($value);
+        }, $_POST);
         $spot = new Spot($_NPOST["name"], TieredSpot::SPOT_ALL, new Location($_NPOST["country"], $_NPOST["city"], $_NPOST["street"], (float)$_NPOST["latitude"], (float)$_NPOST["longitude"]), new UID());
-        (new SQLSession())->write("INSERT INTO `spot_requests`(name, location, description) VALUES ('{$spot->get_name()}', '{$spot->get_location()->encode()}', '" . $_NPOST["description"] . "')");
+        (new SQLSession())->write("INSERT INTO `spot_requests`(name, location, description) VALUES ('{$spot->get_name()}', '{$spot->get_location()->encode()}', '" . $_NPOST["description"] . "')")->close();
     }
 ?>
 <html>

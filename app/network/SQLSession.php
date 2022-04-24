@@ -43,7 +43,6 @@ class SQLSession {
      */
     public function close() : void {
         $this->session->close();
-        $this->__destruct();
     }
 
     public function __destruct(){
