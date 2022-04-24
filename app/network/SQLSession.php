@@ -37,15 +37,4 @@ class SQLSession {
     public function exist(string $statement) : bool {
         return $this->session->query($statement)->num_rows >= self::STATEMENT_DATA_FIND;
     }
-
-    /**
-     * @return void
-     */
-    public function close() : void {
-        $this->session->close();
-    }
-
-    public function __destruct(){
-        $this->close();
-    }
 }
