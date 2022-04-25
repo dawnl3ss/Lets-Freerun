@@ -5,36 +5,66 @@ class SQLSession {
     public const DATABASE_LETS_FREERUN = "lets_freerun";
     public const STATEMENT_DATA_FIND = 1;
 
-    /** @var mysqli $session */
+    /** @var PDO $session */
     private $session;
 
     public function __construct(){
-        $this->session = new \MySQLi("p:127.0.0.1", "root", "root", self::DATABASE_LETS_FREERUN);
+        $this->session = new \PDO("mysql:dbname=" . self::DATABASE_LETS_FREERUN . ";host=127.0.0.1", "root", "root");
     }
 
     /**
-     * @param string $statement
+     * Contre le SQL injection
+     *
+     * @param string $table
+     *
+     * @param array $table_index
+     *
+     * @param array $table_values
+     *
+     * @return $this
      */
-    public function write(string $statement) : self {
-        $this->session->query($statement);
+    public function insert(string $table, array $bind_params, string $table_index, array $table_values) : self {
+        $statement = $this->session->prepare("INSERT INTO {$table} (" . $table_index . ") VALUES (" . implode(", ", $bind_params) . ")");
+
+        for ($i = 0; $i <= count($bind_params) - 1; $i++) {
+            $statement->bindParam($bind_params[$i], $table_values[$i]);
+        }
+        $statement->execute();
         return $this;
     }
 
     /**
-     * @param string $statement
+     * Ne contre pas le SQL injection
      *
-     * @return array
-     */
-    public function get(string $statement){
-        return $this->session->query($statement)->fetch_all(MYSQLI_ASSOC);
-    }
-
-    /**
      * @param string $statement
      *
      * @return bool
      */
     public function exist(string $statement) : bool {
-        return $this->session->query($statement)->num_rows >= self::STATEMENT_DATA_FIND;
+        return $this->session->exec($statement) >= self::STATEMENT_DATA_FIND;
+    }
+
+    /**
+     * Ne contre pas le SQL injection
+     *
+     * @param string $statement
+     *
+     * @return array
+     */
+    public function get(string $statement){
+        $prepare = $this->session->prepare($statement);
+        $prepare->execute();
+        return $prepare->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * @return void
+     */
+    public function close() : void {
+        $this->__destruct();
+    }
+
+    public function __destruct(){
+        $this->session = null;
     }
 }
