@@ -58,6 +58,36 @@ class SQLSession {
     }
 
     /**
+     * Contre le SQL injection
+     *
+     * @param string $table
+     *
+     * @param string $index
+     *
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function delete(string $table, string $index, string $value) : self {
+        $prepare = $this->session->prepare("DELETE FROM {$table} WHERE {$index} = :foo");
+        $prepare->bindParam(":foo", $value);
+        $prepare->execute();
+        return $this;
+    }
+
+    /**
+     * Ne contre pas le SQL injection
+     *
+     * @param string $statement
+     *
+     * @return $this
+     */
+    public function update(string $statement) : self {
+        $this->session->exec($statement);
+        return $this;
+    }
+
+    /**
      * @return void
      */
     public function close() : void {
