@@ -86,6 +86,63 @@
             </div>
         </section>
 
+        <section class="popular-places" id="popular">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <span> Pictures </span>
+                            <h2> Some pictures of the spot. </h2>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                    foreach (scandir("../../../../../image/location/" . $spot->as_path()) as $key => $image){
+                        if ($image !== "." && $image !== ".."){
+                            echo "
+                                <span class='item popular-item'>
+                                    <span class='thumb'>
+                                        <img id='spot-picture' src='../../../../../image/location/{$spot->as_path()}/{$image}" . "' alt=''>
+                                    </span>
+                                </span>
+                            ";
+                        }
+                    }
+                ?>
+            </div>
+        </section>
+
+        <section class="our-services" id="favorites">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="down-services">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section-heading">
+                                        <span> Descripton </span>
+                                        <h2> A little description to introduce you to the spot. </h2>
+                                    </div>
+                                </div>
+                                <div class="col-md-offset-2">
+                                    <div class="col-md-5 col-md-offset-2">
+                                        <div class="accordions">
+                                            <ul class="accordion">
+                                                <li>
+                                                    <a> <?php echo $spot->get_name(); ?> </a>
+                                                    <p> <?php echo $spot->get_description(); ?> </p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/Lets-Freerun/view/footer.php" ?>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>

@@ -360,7 +360,7 @@ section.banner {
   letter-spacing: 0.5px;
 }
 
-.banner .banner-caption .blue-button .green-button {
+.banner .banner-caption .blue-button, .green-button {
   margin-top: 30px;
 }
 
@@ -1350,4 +1350,19 @@ footer .contact-info ul li a {
 
 .favorits .popular-item .thumb .plus-button i:hover {
   background-color: rgba(250,250,250,0.3);
+}
+
+#spot-picture {
+  object-fit: cover;
+  width: 500px;
+  height: 300px;
+  transition: 0.4s;
+  margin: 20px 20px;
+}
+
+#spot-picture:hover {
+  object-fit: cover;
+  width: 540px;
+  height: 340px;
+  transition: 0.4s;
 }
