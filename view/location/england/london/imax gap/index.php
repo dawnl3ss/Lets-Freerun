@@ -41,19 +41,20 @@
                         <div class="banner-caption">
                             <div class="line-dec"></div>
                             <h2> <?php echo $spot->get_name() . " - " . $spot->get_location()->get_country() ?> </h2>
-                            <div>
-                                <div id="map" style="width:100%; height:50%"></div>
-                                <script type="module">
-                                    import { display_map } from "./../../../../../app/location/maps/google-maps-api.js";
-                                    display_map(<?php echo $spot->get_location()->get_lat(); ?>, <?php echo $spot->get_location()->get_lng(); ?>, "<?php echo $spot->get_name(); ?>");
-                                </script>
-                            </div>
                             <div class="line-dec"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div>
+            <div id="map" style="width:100%; height:50%"></div>
+            <script type="module">
+                import { display_map } from "./../../../../../app/location/maps/google-maps-api.js";
+                display_map(<?php echo $spot->get_location()->get_lat(); ?>, <?php echo $spot->get_location()->get_lng(); ?>, "<?php echo $spot->get_name(); ?>");
+            </script>
+        </div>
 
         <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/Lets-Freerun/view/footer.php" ?>
 

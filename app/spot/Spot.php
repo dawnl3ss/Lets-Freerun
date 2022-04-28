@@ -14,13 +14,17 @@ class Spot {
     /** @var Location $location */
     private $location;
 
+    /** @var string $description */
+    private $description;
+
     /** @var UID $uid */
     private $uid;
 
-    public function __construct(string $name, int $tier, Location $location, UID $uid = null){
+    public function __construct(string $name, int $tier, Location $location, string $description, UID $uid = null){
         $this->name = $name;
         $this->tier = $tier;
         $this->location = $location;
+        $this->description = $description;
         $this->uid = is_null($uid) ? $this->uid = new UID() : $this->uid = $uid;
     }
 
@@ -38,6 +42,11 @@ class Spot {
      * @return Location
      */
     public function get_location() : Location { return $this->location; }
+
+    /**
+     * @return string
+     */
+    public function get_description() : string { return $this->description; }
 
     /**
      * @return int

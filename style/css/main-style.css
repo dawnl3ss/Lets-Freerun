@@ -482,6 +482,10 @@ section.banner {
   display: block;
 }
 
+.text-content a {
+  color: #fff;
+}
+
 .popular-places .popular-item .thumb .plus-button {
   position: absolute;
   bottom: 20px;
