@@ -158,7 +158,7 @@
                     foreach ($spots as $uid => $spot){
                         if ($spot instanceof Spot){
                             echo "
-                                <div class='item popular-item''>
+                                <div class='item popular-item'>
                                     <div class='thumb'>
                                         <img style='object-fit: cover; width:300px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
                                         <div class='text-content'>

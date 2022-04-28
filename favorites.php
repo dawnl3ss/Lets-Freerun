@@ -74,7 +74,7 @@
                                                     <div class='down-content'>
                                                         <h4> " . $spot->get_name() . " </h4>
                                                         <span> " . ucfirst($spot->tier_to_category()) . " </span>
-                                                        <p> (description du spot) </p>
+                                                        <p> " . $spot->get_description() . " </p>
                                                         <div class='row'>
                                                             <div class='col-md-6 first-button'>
                                                                 <div class='text-button'>
@@ -90,7 +90,7 @@
                                                             </div>
                                                             <div class='col-md-6'>
                                                                 <div class='text-button'>
-                                                                    <a href='location/{$spot->as_path()}/?uid={$spot->get_uid()}'> See details </a>
+                                                                    <a href='view/location/{$spot->as_path()}/?uid={$spot->get_uid()}'> See details </a>
                                                                 </div>
                                                             </div>
                                                         </div>

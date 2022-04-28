@@ -60,6 +60,22 @@ section {
   color: #4883ff;
 }
 
+.green-button a {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 16px;
+  text-decoration: none;
+  border: 2px solid #0eb755;
+  transition: all 0.5s;
+  background-color: transparent;
+  color: #0eb755;
+}
+
+.fav-button {
+  margin: 20px 0px;
+}
+
 .cf:before, 
 .cf:after {
   content: '';
@@ -338,14 +354,27 @@ section.banner {
   color: #fff;
 }
 
-.banner .banner-caption span {
+.banner .banner-caption span, h3 {
   font-size: 22px;
   color: #fff;
   letter-spacing: 0.5px;
 }
 
-.banner .banner-caption .blue-button {
+.banner .banner-caption .blue-button .green-button {
   margin-top: 30px;
+}
+
+.splitscreen {
+  display: flex;
+}
+
+.splitscreen .leftm, .splitscreen .rightm {
+  flex: 1;
+}
+
+.map {
+  width: 800px;
+  height: 500px;
 }
 
 .banner .submit-form {
@@ -353,6 +382,8 @@ section.banner {
   background-color: #fff;
   padding: 15px;
 }
+
+
 
 .submit-form .first-item {
   border-right: 1px solid #ddd;
@@ -658,7 +689,7 @@ section.our-services .service-item h4 {
   margin-bottom:  25px;
 }
 
-.our-services .left-content .blue-button {
+.our-services .left-content .blue-button .green-button {
   margin-top: 25px;
 }
 
@@ -1158,6 +1189,19 @@ footer .contact-info ul li a {
 
   .banner .banner-caption {
     padding: 200px 30px;
+  }
+
+  .map {
+    width: 400px;
+    height: 250px;
+  }
+
+  .splitscreen {
+    display: block;
+  }
+
+  .splitscreen .leftm, .splitscreen .rightm {
+    margin: 20px 20px;
   }
 
   .submit-form input {

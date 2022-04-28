@@ -37,24 +37,54 @@
         <section class="banner" id="top">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="banner-caption">
-                            <div class="line-dec"></div>
-                            <h2> <?php echo $spot->get_name() . " - " . $spot->get_location()->get_country() ?> </h2>
-                            <div class="line-dec"></div>
+                    <div class="col-md-12 col-md-offset-0">
+                        <div class="banner-caption splitscreen">
+                            <div class="rightm">
+                                <div class="line-dec"></div>
+                                    <h1> <?php echo $spot->get_name(); ?> </h1>
+                                    <h3> <i class="fa fa-arrow-right"></i> <?php echo $spot->get_location()->get_country(); ?> </h3>
+                                    <h3> <i class="fa fa-arrow-right"></i> <?php echo $spot->get_location()->get_city(); ?> </h3><br>
+                                <div class="line-dec"></div>
+
+                                <div class="fav-button">
+                                    <?php if (!in_array((string)$spot->get_uid(), explode(",", $_COOKIE["favorites"]))): ?>
+                                        <div class="blue-button">
+                                            <a id="fav-<?php echo $spot->get_uid(); ?>" href=""> Add to favorites </a>
+                                        </div>
+                                        <script type='module'>
+                                            import { add_favorites } from "./../../../../../app/spot/favorites/fav-manager.js";
+
+                                            document.getElementById("fav-<?php echo $spot->get_uid(); ?>").onclick = function (){
+                                                add_favorites("<?php echo (int)$spot->get_uid(); ?>");
+                                            }
+                                        </script>
+                                    <?php else: ?>
+                                        <div class="green-button">
+                                            <a id="fav-<?php echo $spot->get_uid(); ?>" href=""> Added ! </a>
+                                        </div>
+                                        <script type='module'>
+                                            import { delete_favorites } from "./../../../../../app/spot/favorites/fav-manager.js";
+
+                                            document.getElementById("fav-<?php echo $spot->get_uid(); ?>").onclick = function (){
+                                                delete_favorites("<?php echo (int)$spot->get_uid(); ?>");
+                                            }
+                                        </script>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+
+                            <div class="leftm">
+                                <div id="map" class="map"></div>
+                                <script type="module">
+                                    import { display_map } from "./../../../../../app/location/maps/google-maps-api.js";
+                                    display_map(<?php echo $spot->get_location()->get_lat(); ?>, <?php echo $spot->get_location()->get_lng(); ?>, "<?php echo $spot->get_name(); ?>");
+                                </script>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <div>
-            <div id="map" style="width:100%; height:50%"></div>
-            <script type="module">
-                import { display_map } from "./../../../../../app/location/maps/google-maps-api.js";
-                display_map(<?php echo $spot->get_location()->get_lat(); ?>, <?php echo $spot->get_location()->get_lng(); ?>, "<?php echo $spot->get_name(); ?>");
-            </script>
-        </div>
 
         <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/Lets-Freerun/view/footer.php" ?>
 
