@@ -1358,6 +1358,7 @@ footer .contact-info ul li a {
   height: 300px;
   transition: 0.4s;
   margin: 20px 20px;
+  border: 1px  black;
 }
 
 #spot-picture:hover {
