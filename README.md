@@ -1,2 +1,3 @@
 # Lets-Freerun
-Lets-Freerun is a free and opensource website which gather a lot of parkour spots around the world.
+Lets-Freerun is my own website which gather a lot of parkour spots around the world.  
+Currently under development...
