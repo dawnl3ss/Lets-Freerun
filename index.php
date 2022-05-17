@@ -303,9 +303,8 @@
                                                     <p> Your request will be examinated within the 7 days. If all the details are okay, your spot will be added to our list. </p>
                                                     <ul>
                                                         <li> - Don't put wrong information intentionaly. </li>
+                                                        <li> - One request is enough, don't try to do many requests. </li>
                                                         <li> - Don't try to hack/bypass website security. </li>
-                                                        <li> - Don't choose non-appropriated pictures. </li>
-                                                        <li> - Don't choose pictures which don't belong to you. </li>
                                                     </ul>
                                                 </div>
                                             </div>
