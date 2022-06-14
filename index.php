@@ -112,7 +112,7 @@
                                 echo "
                                     <div class='item popular-item'>
                                         <div class='thumb'>
-                                            <img style='object-fit: cover; width:300px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
+                                            <img style='object-fit: cover; width:400px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
                                             <div class='text-content'>
                                                 <h4> <a href='view/location/{$spot->as_path()}/?uid={$spot->get_uid()}'> {$spot->get_name()} </a> </h4>
                                                 <span> {$spot->get_location()->get_country()} </span>
@@ -151,7 +151,7 @@
                 <div class="owl-carousel owl-theme">
                     <?php
                     $spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
-                        return strtolower($spot->get_location()->get_country()) === "france"/*strtolower(get_current_country($_SERVER["REMOTE_ADDR"]))*/;
+                        return strtolower($spot->get_location()->get_country()) === strtolower(get_current_country($_SERVER["REMOTE_ADDR"]));
                     });
                     shuffle($spots);
 
@@ -160,7 +160,7 @@
                             echo "
                                 <div class='item popular-item'>
                                     <div class='thumb'>
-                                        <img style='object-fit: cover; width:300px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
+                                        <img style='object-fit: cover; width:400px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
                                         <div class='text-content'>
                                             <h4> <a href='view/location/{$spot->as_path()}/?uid={$spot->get_uid()}'> {$spot->get_name()} </a> </h4>
                                             <span> {$spot->get_location()->get_country()} </span>
