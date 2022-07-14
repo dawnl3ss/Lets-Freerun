@@ -10,10 +10,8 @@
 
         $spot = new Spot($_NPOST["name"], TieredSpot::SPOT_ALL, new Location($_NPOST["country"], $_NPOST["city"], $_NPOST["street"], (float)$_NPOST["latitude"], (float)$_NPOST["longitude"]), new UID());
 
-        (new SQLSession())->insert(
-            "spot_requests",
-            [":name", ":location", ":description"],
-            "name, location, description",
+        (new SQLSession())->table("spot_requests")->insert(
+            ["name", "location", "description"],
             [$spot->get_name(), $spot->get_location()->encode(), $_NPOST["description"]]
         )->close();
     }
@@ -151,7 +149,7 @@
                 <div class="owl-carousel owl-theme">
                     <?php
                     $spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
-                        return strtolower($spot->get_location()->get_country()) === strtolower(get_current_country($_SERVER["REMOTE_ADDR"]));
+                    return strtolower($spot->get_location()->get_country()) === "france"/*strtolower(get_current_country($_SERVER["REMOTE_ADDR"]))*/;
                     });
                     shuffle($spots);
 

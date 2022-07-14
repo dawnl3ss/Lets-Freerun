@@ -14,10 +14,8 @@ class SpotManager {
     public static function add_spot(Spot $spot) : void {
         self::$current_spots_list[$spot->get_uid()] = $spot;
         create_spot_path($spot);
-        (new SQLSession())->insert(
-            "spots",
-            [":name", ":tier", ":location", "uid"],
-            "name, tier, location, uid",
+        (new SQLSession())->table("spots")->insert(
+            ["name", "tier", "location", "uid"],
             [$spot->get_name(), $spot->get_tier(), $spot->get_location()->encode(), $spot->get_uid()]
         );
     }
@@ -27,7 +25,7 @@ class SpotManager {
      */
     public static function remove_spot(Spot $spot) : void {
         unset(self::$current_spots_list[$spot->get_uid()]);
-        (new SQLSession())->delete("spots", "uid", (string)$spot->get_uid());
+        (new SQLSession())->table("spots")->delete("uid", (string)$spot->get_uid());
     }
 
     /**
