@@ -4,7 +4,7 @@
             <div class="col-md-5">
                 <div class="about-veno">
                     <div class="logo">
-                        <img src="/Lets-Freerun/image/footer_logo.png" alt="footer logo">
+                        <img src="../../image/footer_logo.png" alt="footer logo">
                     </div>
                     <p> Lets-Freerun is a website fully developped by me, Neptune, during my free time. If you have any request or idea just contact me. </p>
                     <ul class="social-icons">
