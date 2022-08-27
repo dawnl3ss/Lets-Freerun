@@ -33,9 +33,9 @@ function __acces(){
             ],
             [
                 "method" => METHOD_GET,
-                "name" => "/test",
+                "name" => "/favorites",
                 "callback" => function(){
-                    echo 'test';
+                    require_once "view/favorites.view.php";
                 }
             ]
         ]

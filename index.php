@@ -3,6 +3,4 @@
     __load_all_classes();
     __load_all_spots();
     __acces();
-
-
 ?>

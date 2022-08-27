@@ -9,7 +9,7 @@
                     <p> Lets-Freerun is a website fully developped by me, Neptune, during my free time. If you have any request or idea just contact me. </p>
                     <ul class="social-icons">
                         <li>
-                            <a href="https://github.com/Neptune-IT/Lets-Freerun"><i class="fa fa-github center"></i></a>
+                            <a href="https://github.com/4m4Sec/Lets-Freerun"><i class="fa fa-github center"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <ul>
-                                <li><a href="favorites.php"><i class="fa fa-stop"></i> My favorites </a></li>
+                                <li><a href="/favorites"><i class="fa fa-stop"></i> My favorites </a></li>
                                 <li><a href=""><i class="fa fa-stop"></i> How It Works? </a></li>
                             </ul>
                         </div>

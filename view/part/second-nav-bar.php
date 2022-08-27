@@ -57,7 +57,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a class="scrollTo" data-scrollTo="favorits" href="../../../../../favorites.php"> Your favorits </a>
+                                <a class="scrollTo" data-scrollTo="favorits" href="/favorites"> Your favorits </a>
                             </li>
                             <li>
                                 <a class="scrollTo" data-scrollTo="contact" href=""> Contact Us </a>
