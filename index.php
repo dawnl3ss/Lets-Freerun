@@ -2,8 +2,9 @@
     require_once "app/Autoloader.php";
     __load_all_classes();
     __load_all_spots();
+    __acces();
 
-    if (isset($_POST["submit-request"])){
+if (isset($_POST["submit-request"])){
         $_NPOST = array_map(function ($value){
             return xss_counter($value);
         }, $_POST);
