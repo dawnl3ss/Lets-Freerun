@@ -149,7 +149,7 @@
                 <div class="owl-carousel owl-theme">
                     <?php
                     $spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
-                    return strtolower($spot->get_location()->get_country()) === "france"/*strtolower(get_current_country($_SERVER["REMOTE_ADDR"]))*/;
+                        return strtolower($spot->get_location()->get_country()) === "france"/*strtolower(get_current_country($_SERVER["REMOTE_ADDR"]))*/;
                     });
                     shuffle($spots);
 
