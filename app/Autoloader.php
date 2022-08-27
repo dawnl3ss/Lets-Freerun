@@ -14,4 +14,9 @@ function __load_all_classes() : void {
             }
         }
     }
+    require_vendors();
+}
+
+function require_vendors(){
+    require_once __DIR__ . "/../vendor/zephyr/app.php";
 }

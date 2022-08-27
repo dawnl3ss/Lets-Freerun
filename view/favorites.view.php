@@ -1,8 +1,3 @@
-<?php
-    require_once "app/Autoloader.php";
-    __load_all_classes();
-    __load_all_spots();
-?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -10,24 +5,24 @@
         <title> Lets-Freerun </title>
 
         <!-- Head Meta -->
-        <link rel="icon" type="image/png" href="image/icon.ico">
+        <link rel="icon" type="image/png" href="../image/icon.ico">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- CSS/JS Style -->
-        <link rel="stylesheet" href="style/css/bootstrap.min.css">
-        <link rel="stylesheet" href="style/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="style/css/fontAwesome.css">
-        <link rel="stylesheet" href="style/css/hero-slider.css">
-        <link rel="stylesheet" href="style/css/owl-carousel.css">
-        <link rel="stylesheet" href="style/css/datepicker.css">
-        <link rel="stylesheet" href="style/css/main-style.css">
+        <link rel="stylesheet" href="../style/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../style/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="../style/css/fontAwesome.css">
+        <link rel="stylesheet" href="../style/css/hero-slider.css">
+        <link rel="stylesheet" href="../style/css/owl-carousel.css">
+        <link rel="stylesheet" href="../style/css/datepicker.css">
+        <link rel="stylesheet" href="../style/css/main-style.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-        <script src="style/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="../style/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
 
     <body>
-        <?php require_once "view/main-nav-bar.php" ?>
+        <?php require_once "view/part/main-nav-bar.php" ?>
 
         <section class="banner" id="top">
             <div class="container">
@@ -80,7 +75,7 @@
                                                                 <div class='text-button'>
                                                                     <a href='' id='fav-{$spot->get_uid()}'> Remove from favorites </a>
                                                                     <script type='module'>
-                                                                        import { delete_favorites } from './app/spot/favorites/fav-manager.js';
+                                                                        import { delete_favorites } from './fav-manager.js';
                                                                         
                                                                         document.getElementById('fav-{$spot->get_uid()}').onclick = function (){
                                                                              delete_favorites('" . $spot->get_uid() . "');
@@ -147,17 +142,17 @@
             </div>
         </section>
 
-        <?php require_once "view/footer.php"; ?>
+        <?php require_once "view/part/footer.php"; ?>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
-        <script src="style/js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="../style/js/vendor/jquery-1.11.2.min.js"></script>
 
-        <script src="style/js/vendor/bootstrap.min.js"></script>
-        <script src="style/js/datepicker.js"></script>
-        <script src="style/js/plugins.js"></script>
-        <script src="style/js/main.js"></script>
+        <script src="../style/js/vendor/bootstrap.min.js"></script>
+        <script src="../style/js/datepicker.js"></script>
+        <script src="../style/js/plugins.js"></script>
+        <script src="../style/js/main.js"></script>
         <script type='module'>
-            import { set_cookie, cookie_exist } from './app/network/cookie/cookie-manager.js';
+            import { set_cookie, cookie_exist } from '../app/network/cookie/cookie-manager.js';
             if (!cookie_exist("favorites")) set_cookie("favorites", "");
         </script>
     </body>

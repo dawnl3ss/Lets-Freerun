@@ -10,7 +10,7 @@
                     <nav id="primary-nav" class="dropdown cf">
                         <ul class="dropdown menu">
                             <li class='active'>
-                                <a href="../../../../../"> Home </a>
+                                <a href="../../../../../.."> Home </a>
                             </li>
                             <li>
                                 <a href=""> Most Visited </a>
