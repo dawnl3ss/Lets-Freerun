@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/Lets-Freerun/app/Autoloader.php";
+require_once __DIR__ . "/../Autoloader.php";
 __load_all_classes();
 
 /**

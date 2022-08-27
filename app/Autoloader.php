@@ -1,7 +1,7 @@
 <?php
 
 function __load_all_classes() : void {
-    $path = $_SERVER["DOCUMENT_ROOT"] . "/Lets-Freerun/";
+    $path = $_SERVER["DOCUMENT_ROOT"] . "/";
 
     foreach (@scandir($path . "app") as $folders){
         if ($folders != "." and $folders != ".." and $folders != "Autoloader.php"){
