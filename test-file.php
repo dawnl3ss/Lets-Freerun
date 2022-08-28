@@ -38,15 +38,15 @@ function getdesc(int $uid){
     switch ($uid){
         case 3181906: // olympiades
             return "description";
-        case 70152560: //la defense
+        case 70152560: //la-defense
             return "description";
         case 6777008: //ma power gap
             return "description";
-        case 42560145: //evry & lisses
+        case 42560145: //evry-&-lisses
             return "description";
         case 57491566: //ancien ambarcadere
             return "description";
-        case 70416404: //imax gap
+        case 70416404: //imax-gap
             return "description";
         case 51412771: // Central Park
             return "description";

@@ -57,7 +57,7 @@ class Spot {
      * @return string
      */
     public function as_path() : string {
-        return strtolower($this->get_location()->get_country()) . "/" . strtolower($this->get_location()->get_city()) . "/" . strtolower($this->get_name());
+        return strtolower($this->get_location()->get_country()) . "/" . strtolower($this->get_location()->get_city()) . "/" . str_replace(' ', '-', strtolower($this->get_name()));
     }
 
     /**
@@ -70,6 +70,8 @@ class Spot {
             case 1:
                 return "uncommon";
             case 2:
+                return "all";
+            default:
                 return "all";
         }
     }
