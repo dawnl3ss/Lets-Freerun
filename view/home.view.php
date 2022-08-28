@@ -1,6 +1,8 @@
 <?php
 
-$famous_spots = SpotManager::$current_spots_list;
+$famous_spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
+    return $spot->get_tier() === TieredSpot::SPOT_FAMOUS;
+});
 shuffle($famous_spots);
 
 $your_spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
