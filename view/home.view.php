@@ -1,3 +1,13 @@
+<?php
+
+$famous_spots = SpotManager::$current_spots_list;
+shuffle($famous_spots);
+
+$your_spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
+    return strtolower($spot->get_location()->get_country()) === "france"/*strtolower(get_current_country($_SERVER["REMOTE_ADDR"]))*/;
+});
+shuffle($your_spots);
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -156,36 +166,9 @@
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme">
-                    <?php
-                    $spots = SpotManager::$current_spots_list;
-                    shuffle($spots);
-
-                    foreach ($spots as $uid => $spot){
-                        if ($spot instanceof Spot){
-                            echo "
-                                <div class='item popular-item'>
-                                    <div class='thumb'>
-                                        <img style='object-fit: cover; width:400px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
-                                        <div class='text-content'>
-                                            <h4> <a href='/{$spot->as_path()}'> {$spot->get_name()} </a> </h4>
-                                            <span> {$spot->get_location()->get_country()} </span>
-                                        </div>
-                                        <div class='plus-button' data-toggle='tooltip' data-placement='top' title='Add to favorites'>
-                                            <i class='fa fa-plus' id='plus-{$spot->get_uid()}'></i>
-                                            <script type='module'>
-                                                import { add_favorites } from './../app/spot/favorites/fav-manager.js';           
-                                                    document.getElementById('plus-{$spot->get_uid()}').onclick = function (){
-                                                        add_favorites('" . $spot->get_uid() . "');
-                                                        window.location.href = '/favorites';
-                                                    }
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-                            ";
-                        }
-                    }
-                    ?>
+                    <? foreach ($famous_spots as $uid => $f_spot): ?>
+                        <?= Render::spot_card($f_spot); ?>
+                    <? endforeach; ?>
                 </div>
             </div>
         </section>
@@ -201,39 +184,9 @@
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme">
-                    <?php
-                    $spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
-                        return strtolower($spot->get_location()->get_country()) === "france"/*strtolower(get_current_country($_SERVER["REMOTE_ADDR"]))*/;
-                    });
-                    shuffle($spots);
-
-                    foreach ($spots as $uid => $spot){
-                        if ($spot instanceof Spot){
-                            echo "
-                                <div class='item popular-item'>
-                                    <div class='thumb'>
-                                        <img style='object-fit: cover; width:400px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg" . "' alt=''>
-                                        <div class='text-content'>
-                                            <h4> <a href='/{$spot->as_path()}'> {$spot->get_name()} </a> </h4>
-                                            <span> {$spot->get_location()->get_country()} </span>
-                                        </div>
-                                        <div class='plus-button' data-toggle='tooltip' data-placement='top' title='Add to favorites'>
-                                            <i class='fa fa-plus' id='plus-{$spot->get_uid()}'></i>
-                                            <script type='module'>
-                                                import { add_favorites } from './../app/spot/favorites/fav-manager.js';
-                                                            
-                                                document.getElementById('plus-{$spot->get_uid()}').onclick = function (){
-                                                    add_favorites('" . $spot->get_uid() . "')
-                                                    window.location.href = '/favorites';
-                                                }
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-                            ";
-                        }
-                    }
-                    ?>
+                    <? foreach ($your_spots as $uid => $y_spot): ?>
+                        <?= Render::spot_card($y_spot); ?>
+                    <? endforeach; ?>
                 </div>
             </div>
         </section>
