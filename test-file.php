@@ -5,13 +5,14 @@ __load_all_classes();
 __load_all_spots();
 
 
-/*SpotManager::add_spot(new Spot(
-    "Central Park",
+SpotManager::add_spot($spot = new Spot(
+    "Freeway Park",
     TieredSpot::SPOT_FAMOUS,
-    new Location("United-States", "New-York", "Central Park", 40.79875874218898, -73.95631911204548),
+    new Location("United-States", "Seattle", "700 Seneca St", 47.609319326940714, -122.33121544367668),
+    "description",
     new UID()
 ));
-debug(array_filter(SpotManager::$current_spots_list, function (Spot $spot){
+/*debug(array_filter(SpotManager::$current_spots_list, function (Spot $spot){
     return $spot->get_tier() === TieredSpot::SPOT_UNCOMMON;
 }));
 $string_table_index = implode(", ", $table_index);
@@ -22,17 +23,17 @@ debug(sql_array_to_string(["test", "oui", "non"]));
 debug(sql_array_to_qmark(["test", "oui", "non"]));*/
 
 
-foreach (SpotManager::$current_spots_list as $uid => $spot){
+/*foreach (SpotManager::$current_spots_list as $uid => $spot){
     if ($spot instanceof Spot){
-        /*(new SQLSession())->insert(
+        (new SQLSession())->insert(
             "spots",
             [":name", ":tier", ":location", ":description", ":uid"],
             "name, tier, location, description, uid",
             [$spot->get_name(), $spot->get_tier(), $spot->get_location()->encode(), getdesc($spot->get_uid()), $spot->get_uid()]
-        );*/
+        );
         echo "INSERT INTO spots (name, tier, location, description, uid) VALUES ('{$spot->get_name()}', '{$spot->get_tier()}', '{$spot->get_location()->encode()}', '{$spot->get_description()}', '{$spot->get_uid()}');" . "<br>";
     }
-}
+}*/
 
 function getdesc(int $uid){
     switch ($uid){

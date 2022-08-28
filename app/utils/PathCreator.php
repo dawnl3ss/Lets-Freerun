@@ -6,36 +6,17 @@ __load_all_classes();
 /**
  * @param Spot $spot
  */
-function create_spot_path(Spot $spot){
-    add_country_folder($spot, "location/");
-    add_city_folder($spot, "location/" . $spot->get_location()->get_country());
-    add_name_folder($spot, "location/" . $spot->get_location()->get_country() . "/" . $spot->get_location()->get_city());
-    file_put_contents("location/" . $spot->get_location()->get_country() . "/" . $spot->get_location()->get_city() . "/" . strtolower($spot->get_name()) . "/index.php", file_get_contents("location/template.txt"));
-}
+function create_spot_image_path(Spot $spot){
+    $path = __DIR__ . "/../../image/location/";
+    $location = $spot->get_location();
 
-/**
- * @param Spot $spot
- *
- * @param string $path
- */
-function add_country_folder(Spot $spot, string $path){
-    if (!is_dir($path . strtolower($spot->get_location()->get_country()))) mkdir($path . strtolower($spot->get_location()->get_country()));
-}
-
-/**
- * @param Spot $spot
- *
- * @param string $path
- */
-function add_city_folder(Spot $spot, string $path){
-    if (!is_dir($path . "/" . strtolower($spot->get_location()->get_city()))) mkdir($path . "/" . strtolower($spot->get_location()->get_city()));
-}
-
-/**
- * @param Spot $spot
- *
- * @param string $path
- */
-function add_name_folder(Spot $spot, string $path){
-    if (!is_dir($path . "/" . strtolower($spot->get_name()))) mkdir($path . "/" . strtolower($spot->get_name()));
+    if (!is_dir($path . strtolower($location->get_country()))){
+        mkdir($path . strtolower($location->get_country()));
+    }
+    if (!is_dir($path . strtolower($location->get_country()) . '/' . strtolower($location->get_city()))){
+        mkdir($path . strtolower($location->get_country()) . '/' . strtolower($location->get_city()));
+    }
+    if (!is_dir($path . strtolower($location->get_country()) . '/' . strtolower($location->get_city()) . '/' . str_replace(' ', '-', strtolower($spot->get_name())))){
+        mkdir($path . strtolower($location->get_country()). '/' . strtolower($location->get_city()) . '/' . str_replace(' ', '-', strtolower($spot->get_name())));
+    }
 }

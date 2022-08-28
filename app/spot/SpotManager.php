@@ -13,10 +13,10 @@ class SpotManager {
      */
     public static function add_spot(Spot $spot) : void {
         self::$current_spots_list[$spot->get_uid()] = $spot;
-        create_spot_path($spot);
+        create_spot_image_path($spot);
         (new SQLSession())->table("spots")->insert(
-            ["name", "tier", "location", "uid"],
-            [$spot->get_name(), $spot->get_tier(), $spot->get_location()->encode(), $spot->get_uid()]
+            ["name", "tier", "location", "description", "uid"],
+            [$spot->get_name(), $spot->get_tier(), $spot->get_location()->encode(), $spot->get_description(), $spot->get_uid()]
         );
     }
 
