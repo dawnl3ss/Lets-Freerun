@@ -48,40 +48,31 @@ $spot_uids = explode(",", $cookie);
                                             <li>
                                                 <a href=""> United-States </a>
                                                 <ul class="sub-menu">
-                                                    <?php
-                                                    foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                                        if ($spot instanceof Spot){
-                                                            if ($spot->get_location()->get_country() === "United-States" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                echo "<li><a href='/{$spot->as_path()}" . "'> {$spot->get_name()} </a></li>";
-                                                        }
-                                                    }
-                                                    ?>
+                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spot): ?>
+                                                        <? if ($spot->get_location()->get_country() === "United-States" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
+                                                            <?= "<li><a href='/{$spot->as_path()}" . "'> {$spot->get_name()} </a></li>" ?>
+                                                        <? endif; ?>
+                                                    <? endforeach; ?>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a href=""> France </a>
                                                 <ul class="sub-menu">
-                                                    <?php
-                                                    foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                                        if ($spot instanceof Spot){
-                                                            if ($spot->get_location()->get_country() === "France" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                echo "<li><a href='/{$spot->as_path()}" . "' onclick='" . $_SESSION["uid"] = $spot->get_uid() . "'> {$spot->get_name()} </a></li>";
-                                                        }
-                                                    }
-                                                    ?>
+                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spot): ?>
+                                                        <? if ($spot->get_location()->get_country() === "France" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
+                                                            <?= "<li><a href='/{$spot->as_path()}" . "'> {$spot->get_name()} </a></li>" ?>
+                                                        <? endif; ?>
+                                                    <? endforeach; ?>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a href=""> England </a>
                                                 <ul class="sub-menu">
-                                                    <?php
-                                                    foreach (SpotManager::$current_spots_list as $uid => $spot){
-                                                        if ($spot instanceof Spot){
-                                                            if ($spot->get_location()->get_country() === "England" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS)
-                                                                echo "<li><a href='/{$spot->as_path()}" . "'> {$spot->get_name()} </a></li>";
-                                                        }
-                                                    }
-                                                    ?>
+                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spot): ?>
+                                                        <? if ($spot->get_location()->get_country() === "England" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
+                                                            <?= "<li><a href='/{$spot->as_path()}" . "'> {$spot->get_name()} </a></li>" ?>
+                                                        <? endif; ?>
+                                                    <? endforeach; ?>
                                                 </ul>
                                             </li>
                                         </ul>
