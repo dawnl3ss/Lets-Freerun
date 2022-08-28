@@ -43,7 +43,8 @@ function __acces(){
 
     foreach (SpotManager::$current_spots_list as $spot){
         if ($spot instanceof Spot){
-            create_route(METHOD_GET, "/" . $spot->as_path(), function (){
+            create_route(METHOD_GET, "/" . $spot->as_path(), function () use ($spot){
+                $_SESSION["spot"] = $spot;
                 require_once "view/location/spot.view.php";
             });
         }
