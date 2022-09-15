@@ -76,4 +76,21 @@ class Render {
             </div>
         ";
     }
+
+    /**
+     * @param Spot $spot
+     *
+     * @param string $image
+     *
+     * @return string
+     */
+    public static function img_card(Spot $spot, string $image) : string {
+        return "
+            <span class='item popular-item'>
+                <span class='thumb'>
+                    <img id='spot-picture' src='../../image/location/{$spot->as_path()}/{$image}" . "' alt=''>
+                </span>
+            </span>
+        ";
+    }
 }

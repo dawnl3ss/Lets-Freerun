@@ -48,9 +48,9 @@
                                             <li>
                                                 <a href=""> United-States </a>
                                                 <ul class="sub-menu">
-                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spot): ?>
-                                                        <? if ($spot->get_location()->get_country() === "United-States" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
-                                                            <?= "<li><a href='/{$spot->as_path()}" . "'> {$spot->get_name()} </a></li>" ?>
+                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spots): ?>
+                                                        <? if ($spots->get_location()->get_country() === "United-States" && $spots->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
+                                                            <?= "<li><a href='/{$spots->as_path()}" . "'> {$spots->get_name()} </a></li>" ?>
                                                         <? endif; ?>
                                                     <? endforeach; ?>
                                                 </ul>
@@ -58,9 +58,9 @@
                                             <li>
                                                 <a href=""> France </a>
                                                 <ul class="sub-menu">
-                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spot): ?>
-                                                        <? if ($spot->get_location()->get_country() === "France" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
-                                                            <?= "<li><a href='/{$spot->as_path()}" . "'> {$spot->get_name()} </a></li>" ?>
+                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spots): ?>
+                                                        <? if ($spots->get_location()->get_country() === "France" && $spots->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
+                                                            <?= "<li><a href='/{$spots->as_path()}" . "'> {$spots->get_name()} </a></li>" ?>
                                                         <? endif; ?>
                                                     <? endforeach; ?>
                                                 </ul>
@@ -68,9 +68,9 @@
                                             <li>
                                                 <a href=""> England </a>
                                                 <ul class="sub-menu">
-                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spot): ?>
-                                                        <? if ($spot->get_location()->get_country() === "England" && $spot->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
-                                                            <?= "<li><a href='/{$spot->as_path()}" . "'> {$spot->get_name()} </a></li>" ?>
+                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spots): ?>
+                                                        <? if ($spots->get_location()->get_country() === "England" && $spots->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
+                                                            <?= "<li><a href='/{$spots->as_path()}" . "'> {$spots->get_name()} </a></li>" ?>
                                                         <? endif; ?>
                                                     <? endforeach; ?>
                                                 </ul>
@@ -153,19 +153,11 @@
                         </div>
                     </div>
                 </div>
-                <?php
-                foreach (scandir("image/location/" . $spot->as_path()) as $key => $image){
-                    if ($image !== "." && $image !== ".."){
-                        echo "
-                            <span class='item popular-item'>
-                                <span class='thumb'>
-                                    <img id='spot-picture' src='../../image/location/{$spot->as_path()}/{$image}" . "' alt=''>
-                                </span>
-                            </span>
-                        ";
-                    }
-                }
-                ?>
+                <?php foreach (scandir("image/location/" . $spot->as_path()) as $key => $image): ?>
+                    <?php if ($image !== "." && $image !== ".."): ?>
+                        <?= Render::img_card($spot, $image); ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </div>
         </section>
 
