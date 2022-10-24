@@ -35,6 +35,6 @@ class SpotManager {
      */
     public static function edit_spot(int $spot_id, Spot $new_instance) : void {
         self::$current_spots_list[$spot_id] = $new_instance;
-        (new SQLSession())->update("UPDATE `spots` SET name = '{$new_instance->get_name()}', tier = '{$new_instance->get_tier()}', location = '{$new_instance->get_location()->encode()}' WHERE uid = '{$spot_id}'");
+        (new SQLSession())->update("UPDATE spots SET name = '{$new_instance->get_name()}', tier = '{$new_instance->get_tier()}', location = '{$new_instance->get_location()->encode()}' WHERE uid = '{$spot_id}'");
     }
 }

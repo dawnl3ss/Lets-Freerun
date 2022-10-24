@@ -1,7 +1,3 @@
-<?php
-    $cookie = $_COOKIE["favorites"];
-    $spot_uids = explode(",", $cookie);
-?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -95,10 +91,10 @@
                     <div class="col-md-10 col-md-offset-1">
                         <div class="banner-caption">
                             <div class="line-dec"></div>
-                            <h1> Your favorites spots </h1>
-                            <span> List of spots that you added in your favorites list. </span>
+                            <h1> Search engine </h1>
+                            <span> Search registered spots all around the world. </span>
                             <div class="blue-button">
-                                <a class="scrollTo" data-scrollTo="favorites" href="#"> Discover favorites </a>
+                                <a class="scrollTo" data-scrollTo="results" href="#"> See Results </a>
                             </div>
                         </div>
                     </div>
@@ -106,24 +102,15 @@
             </div>
         </section>
 
-        <section class="featured-places" id="favorites">
+        <section class="featured-places" id="results">
             <div class="container">
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="section-heading">
-                            <span> Favorites </span>
+                            <span> Results </span>
                             <h2> Your favorites spots. </h2>
                         </div>
                     </div>
-                    <? if ($cookie !== ""): ?>
-                        <? foreach (SpotManager::$current_spots_list as $uid => $spot): ?>
-                            <? if (in_array((string)$uid, $spot_uids)): ?>
-                                <?= Render::fav_card($spot); ?>
-                            <? endif; ?>
-                        <? endforeach ?>
-                    <? else: ?>
-                        <h4 style='text-align: center'> You have not added any spot. </h4>
-                    <? endif; ?>
                 </div>
             </div>
         </section>

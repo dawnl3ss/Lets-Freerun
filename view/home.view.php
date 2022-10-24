@@ -145,6 +145,57 @@ shuffle($your_spots);
             </div>
         </section>
 
+        <?php if (isset($_GET["country"])): ?>
+            <section class="featured-places" id="search">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-heading">
+                                <h2> Your search </h2><br>
+                                <span> <?php echo "Country : " . $_GET["country"] . " | City : " . $_GET["city"]; ?> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php
+                            foreach (SpotManager::$current_spots_list as $uid => $spot){
+                                if ($spot instanceof  Spot){
+                                    if (strtolower($spot->get_location()->get_country()) === strtolower($_GET["country"]) && strtolower($spot->get_location()->get_city()) === strtolower($_GET["city"]) && $spot->get_tier() === (int)$_GET["category"]){
+                                        echo "
+                                            <div class='col-md-4 col-sm-6 col-xs-12'>
+                                                <div class='featured-item'>
+                                                    <div class='thumb'>
+                                                        <img src='image/location/{$spot->as_path()}/cover.jpg' alt=''>
+                                                    </div>
+                                                    <div class='down-content'>
+                                                        <h4> {$spot->get_name()} </h4>
+                                                        <span> " . ucfirst($spot->tier_to_category()) . " </span>
+                                                        <p> Description du spot </p>
+                                                        <div class='row'>
+                                                            <div class='col-md-6 first-button'>
+                                                                <div class='text-button'>
+                                                                    <a href='#'> Add to favorites </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class='col-md-6'>
+                                                                <div class='text-button'>
+                                                                    <a href='location/{$spot->as_path()}?uid={$spot->get_uid()}" . "'> See Details </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ";
+                                    }
+                                }
+                            }
+                        ?>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
         <section class="popular-places" id="popular">
             <div class="container-fluid">
                 <div class="row">
