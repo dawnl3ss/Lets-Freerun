@@ -110,7 +110,7 @@ shuffle($your_spots);
                             </div>
                         </div>
                         <div class="submit-form">
-                            <form id="form-submit" action="#search" method="get">
+                            <form id="form-submit" action="/search" method="post">
                                 <div class="row">
                                     <div class="col-md-3 first-item">
                                         <fieldset>

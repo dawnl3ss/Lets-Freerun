@@ -104,13 +104,24 @@
 
         <section class="featured-places" id="results">
             <div class="container">
-                <div class='row'>
+                <div class="row">
                     <div class="col-md-12">
                         <div class="section-heading">
-                            <span> Results </span>
-                            <h2> Your favorites spots. </h2>
+                            <h2> Your search </h2><br>
+                            <span> <?= "Country : " . $_POST["country"] . " | City : " . $_POST["city"]; ?> </span>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <?php foreach (SpotManager::$current_spots_list as $uid => $spot): ?>
+                        <?php if ($spot instanceof Spot): ?>
+                            <?php if (strtolower($spot->get_location()->get_country()) === strtolower($_POST["country"]) && strtolower($spot->get_location()->get_city()) === strtolower($_POST["city"])): ?>
+                                <?php if ($spot->get_tier() === (int)$_POST["category"] || (int)$_POST["category"] === TieredSpot::SPOT_ALL): ?>
+                                    <?= Render::search_card($spot); ?>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>

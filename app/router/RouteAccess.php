@@ -39,17 +39,10 @@ function __acces(){
                 }
             ],
             [
-                "method" => METHOD_GET,
-                "name" => "/search",
-                "callback" => function (){
-                    require_once "view/search.view.php";
-                }
-            ],
-            [
                 "method" => METHOD_POST,
                 "name" => "/search",
                 "callback" => function (){
-
+                    require_once "view/search.view.php";
                 }
             ]
         ]
