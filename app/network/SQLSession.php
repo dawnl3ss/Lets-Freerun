@@ -53,23 +53,30 @@ class SQLSession {
      *
      * @param array $bind_values
      *
-     * @param bool $all
+     * @return array|false
+     */
+    public function get(array $table_index, array $bind_values){
+        $list = [];
+
+        for ($i = 0; $i <= count($table_index) - 1; $i++){
+            array_push($list, implode(" = ", [$table_index[$i], ":" . $table_index[$i]]));
+        }
+        $statement = $this->session->prepare("SELECT * FROM {$this->table} WHERE " . implode(" AND ", $list));
+
+        for ($j = 0; $j <= count($table_index) - 1; $j++){
+            $statement->bindParam(":" . $table_index[$j], $bind_values[$j]);
+        }
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Contre le SQL Injection
      *
      * @return array|false
      */
-    public function get(array $table_index, array $bind_values, bool $all = false){
-        if (!$all){
-            $list = [];
-
-            for ($i = 0; $i <= count($table_index) - 1; $i++){
-                array_push($list, implode(" = ", [$table_index[$i], ":" . $table_index[$i]]));
-            }
-            $statement = $this->session->prepare("SELECT * FROM {$this->table} WHERE " . implode(" AND ", $list));
-
-            for ($j = 0; $j <= count($table_index) - 1; $j++) {
-                $statement->bindParam(":" . $table_index[$j], $bind_values[$j]);
-            }
-        } else $statement = $this->session->prepare("SELECT * FROM {$this->table}");
+    public function get_all(){
+        $statement = $this->session->prepare("SELECT * FROM {$this->table}");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -85,7 +92,7 @@ class SQLSession {
      *
      * @return bool
      */
-    public function exist(array $table_index, array $bind_values) : bool {
+    public function exist(array $table_index, array $bind_values, array $pass_check = []) : bool {
         $list = [];
 
         for ($i = 0; $i <= count($table_index) - 1; $i++){
@@ -97,7 +104,14 @@ class SQLSession {
             $statement->bindParam(":" . $table_index[$j], $bind_values[$j]);
         }
         $statement->execute();
-        return $statement->rowCount() >= self::STATEMENT_DATA_FIND;
+
+        if ($statement->rowCount() >= self::STATEMENT_DATA_FIND){
+            if (!empty($pass_check)){
+                return check_password($pass_check["password"], $statement->fetchAll(PDO::FETCH_ASSOC)[0]["password_hash"]);
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -118,15 +132,28 @@ class SQLSession {
         return $this;
     }
 
+
     /**
-     * Ne contre pas le SQL injection
+     * @param array $table_index
      *
-     * @param string $statement
+     * @param array $bind_values
+     *
+     * @param array $condition
      *
      * @return $this
      */
-    public function update(string $statement) : self {
-        $this->session->exec($statement);
+    public function update(array $table_index, array $bind_values, array $condition) : self {
+        $list = [];
+
+        for ($i = 0; $i <= count($table_index) - 1; $i++){
+            array_push($list, implode(" = ", [$table_index[$i], ":" . $table_index[$i]]));
+        }
+        $statement = $this->session->prepare("UPDATE {$this->table} SET " . implode(", ", $list) . " WHERE {$condition[0]} = '{$condition[1]}'");
+
+        for ($j = 0; $j <= count($table_index) - 1; $j++) {
+            $statement->bindParam(":" . $table_index[$j], $bind_values[$j]);
+        }
+        $statement->execute();
         return $this;
     }
 

@@ -82,8 +82,8 @@ class Render {
      *
      * @return string
      */
-    public static function search_card(Spot $spot) : string {
-        return "
+    public static function search_card(Spot $spot, bool $fav) : string {
+        if ($fav) return "
             <div class='col-md-4 col-sm-6 col-xs-12'>
                 <div class='featured-item'>
                     <div class='thumb'>
@@ -96,7 +96,7 @@ class Render {
                         <div class='row'>
                             <div class='col-md-6 first-button'>
                                 <div class='text-button'>
-                                    <a href='' id='fav-{$spot->get_uid()}'> Remove from favorites </a>
+                                    <a href='/favorites' id='fav-{$spot->get_uid()}'> Remove from favorites </a>
                                     <script type='module'>
                                         import { delete_favorites } from './../app/spot/favorites/fav-manager.js';
                                                                         
@@ -115,7 +115,41 @@ class Render {
                     </div>
                 </div>
             </div>
-        ";
+        "; else {
+            return "
+                <div class='col-md-4 col-sm-6 col-xs-12'>
+                    <div class='featured-item'>
+                        <div class='thumb'>
+                            <img style='object-fit: cover; width:1000px; height:200px;' src='image/location/{$spot->as_path()}/cover.jpg' alt=''>
+                        </div>
+                        <div class='down-content'>
+                            <h4> " . $spot->get_name() . " </h4>
+                            <span> " . ucfirst($spot->tier_to_category()) . " </span>
+                            <p> " . $spot->get_description() . " </p>
+                            <div class='row'>
+                                <div class='col-md-6 first-button'>
+                                    <div class='text-button'>
+                                        <a href='/favorites' id='fav-{$spot->get_uid()}'> Add to favorites </a>
+                                        <script type='module'>
+                                            import { add_favorites } from './../app/spot/favorites/fav-manager.js';
+                                                                            
+                                            document.getElementById('fav-{$spot->get_uid()}').onclick = function (){
+                                                add_favorites('" . $spot->get_uid() . "');
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='text-button'>
+                                        <a href='/{$spot->as_path()}'> See details </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ";
+        }
     }
 
     /**

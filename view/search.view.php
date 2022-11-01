@@ -117,7 +117,7 @@
                         <?php if ($spot instanceof Spot): ?>
                             <?php if (strtolower($spot->get_location()->get_country()) === strtolower($_POST["country"]) && strtolower($spot->get_location()->get_city()) === strtolower($_POST["city"])): ?>
                                 <?php if ($spot->get_tier() === (int)$_POST["category"] || (int)$_POST["category"] === TieredSpot::SPOT_ALL): ?>
-                                    <?= Render::search_card($spot); ?>
+                                    <?= Render::search_card($spot, in_array((string)$spot->get_uid(), explode(",", $_COOKIE["favorites"]))); ?>
                                 <?php endif; ?>
                             <?php endif; ?>
                         <?php endif; ?>
@@ -146,15 +146,15 @@
                                         <ul class="accordion">
                                             <li>
                                                 <a> France </a>
-                                                <p> As you know (maybe), Parkour was invented in France, during 1980s. This country </p>
+                                                <p> As you know (maybe), Parkour was invented in France, during 1980s by David Belle. France gather a lot of very famous spots, particullarly in Paris & Evry. </p>
                                             </li>
                                             <li>
                                                 <a> United-States </a>
-                                                <p> un text ici (idk) </p>
+                                                <p> A lot of traceurs come from United-States. This country contains a lot of interressant places to practice Parkour because of the number of big cities. </p>
                                             </li>
                                             <li>
                                                 <a> England </a>
-                                                <p> un text ici (idk) </p>
+                                                <p> London has the most iconic gap in Parkour. It is called the IMAX Gap and is located in London. Besides, the famous YouTube parkour group Storror comes from England. </p>
                                             </li>
                                         </ul>
                                     </div>
