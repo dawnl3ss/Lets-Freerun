@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title> LF - <?php echo $spot->get_name(); ?> </title>
+        <title> LF - <?= $spot->get_name(); ?> </title>
 
         <!-- Head Meta -->
         <link rel="icon" type="image/png" href="../../image/icon.ico">
@@ -28,68 +28,7 @@
     </head>
 
     <body>
-        <div class="wrap">
-            <header id="header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button id="primary-nav-button" type="button"> Menu </button>
-                            <span>
-                                <a href="/"><img class="logo" src="../../image/logo.png" alt="logo"></a>
-                            </span>
-                            <nav id="primary-nav" class="dropdown cf">
-                                <ul class="dropdown menu">
-                                    <li class='active'>
-                                        <a href="/"> Home </a>
-                                    </li>
-                                    <li>
-                                        <a href=""> Most Visited </a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href=""> United-States </a>
-                                                <ul class="sub-menu">
-                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spots): ?>
-                                                        <? if ($spots->get_location()->get_country() === "United-States" && $spots->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
-                                                            <?= "<li><a href='/{$spots->as_path()}" . "'> {$spots->get_name()} </a></li>" ?>
-                                                        <? endif; ?>
-                                                    <? endforeach; ?>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href=""> France </a>
-                                                <ul class="sub-menu">
-                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spots): ?>
-                                                        <? if ($spots->get_location()->get_country() === "France" && $spots->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
-                                                            <?= "<li><a href='/{$spots->as_path()}" . "'> {$spots->get_name()} </a></li>" ?>
-                                                        <? endif; ?>
-                                                    <? endforeach; ?>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href=""> England </a>
-                                                <ul class="sub-menu">
-                                                    <? foreach (SpotManager::$current_spots_list as $uid => $spots): ?>
-                                                        <? if ($spots->get_location()->get_country() === "England" && $spots->get_tier() === TieredSpot::SPOT_FAMOUS): ?>
-                                                            <?= "<li><a href='/{$spots->as_path()}" . "'> {$spots->get_name()} </a></li>" ?>
-                                                        <? endif; ?>
-                                                    <? endforeach; ?>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="/favorites"> Your favorites </a>
-                                    </li>
-                                    <li>
-                                        <a class="scrollTo" data-scrollTo="contact" href="#contact"> Contact Us </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </div>
+        <?php require_once "view/part/nav.part.php"; ?>
 
         <section class="banner" id="top">
             <div class="container">
@@ -98,9 +37,9 @@
                         <div class="banner-caption splitscreen">
                             <div class="rightm">
                                 <div class="line-dec"></div>
-                                <h1> <?php echo $spot->get_name(); ?> </h1>
-                                <h3> <i class="fa fa-arrow-right"></i> <?php echo $spot->get_location()->get_country(); ?> </h3>
-                                <h3> <i class="fa fa-arrow-right"></i> <?php echo $spot->get_location()->get_city(); ?> </h3><br>
+                                <h1> <?= $spot->get_name(); ?> </h1>
+                                <h3> <i class="fa fa-arrow-right"></i> <?= $spot->get_location()->get_country(); ?> </h3>
+                                <h3> <i class="fa fa-arrow-right"></i> <?= $spot->get_location()->get_city(); ?> </h3><br>
                                 <div class="line-dec"></div>
 
                                 <div class="fav-button">
@@ -178,8 +117,8 @@
                                         <div class="accordions">
                                             <ul class="accordion">
                                                 <li>
-                                                    <a> <?php echo $spot->get_name(); ?> </a>
-                                                    <p> <?php echo $spot->get_description(); ?> </p>
+                                                    <a> <?= $spot->get_name(); ?> </a>
+                                                    <p> <?= $spot->get_description(); ?> </p>
                                                 </li>
                                             </ul>
                                         </div>
