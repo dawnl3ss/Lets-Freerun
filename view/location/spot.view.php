@@ -28,7 +28,7 @@
     </head>
 
     <body>
-        <?php require_once "view/part/nav.part.php"; ?>
+        <? require_once "view/part/nav.part.php"; ?>
 
         <section class="banner" id="top">
             <div class="container">
@@ -43,29 +43,29 @@
                                 <div class="line-dec"></div>
 
                                 <div class="fav-button">
-                                    <?php if (!in_array((string)$spot->get_uid(), explode(",", $_COOKIE["favorites"]))): ?>
+                                    <? if (!in_array((string)$spot->get_uid(), explode(",", $_COOKIE["favorites"]))): ?>
                                         <div class="blue-button">
-                                            <a id="fav-<?php echo $spot->get_uid(); ?>" href=""> Add to favorites </a>
+                                            <a id="fav-<?= $spot->get_uid(); ?>" href=""> Add to favorites </a>
                                         </div>
                                         <script type='module'>
                                             import { add_favorites } from "./../../app/spot/favorites/fav-manager.js";
 
-                                            document.getElementById("fav-<?php echo $spot->get_uid(); ?>").onclick = function (){
-                                                add_favorites("<?php echo (int)$spot->get_uid(); ?>");
+                                            document.getElementById("fav-<?= $spot->get_uid(); ?>").onclick = function (){
+                                                add_favorites("<?= (int)$spot->get_uid(); ?>");
                                             }
                                         </script>
-                                    <?php else: ?>
+                                    <? else: ?>
                                         <div class="green-button">
-                                            <a id="fav-<?php echo $spot->get_uid(); ?>" href=""> Added ! </a>
+                                            <a id="fav-<?= $spot->get_uid(); ?>" href=""> Added ! </a>
                                         </div>
                                         <script type='module'>
                                             import { delete_favorites } from "./../../app/spot/favorites/fav-manager.js";
 
-                                            document.getElementById("fav-<?php echo $spot->get_uid(); ?>").onclick = function (){
-                                                delete_favorites("<?php echo (int)$spot->get_uid(); ?>");
+                                            document.getElementById("fav-<?= $spot->get_uid(); ?>").onclick = function (){
+                                                delete_favorites("<?= (int)$spot->get_uid(); ?>");
                                             }
                                         </script>
-                                    <?php endif; ?>
+                                    <? endif; ?>
                                 </div>
                             </div>
 
@@ -73,7 +73,7 @@
                                 <div id="map" class="map"></div>
                                 <script type="module">
                                     import { display_map } from "./../../app/location/maps/google-maps-api.js";
-                                    display_map(<?php echo $spot->get_location()->get_lat(); ?>, <?php echo $spot->get_location()->get_lng(); ?>, "<?php echo $spot->get_name(); ?>");
+                                    display_map(<?= $spot->get_location()->get_lat(); ?>, <?= $spot->get_location()->get_lng(); ?>, "<?= $spot->get_name(); ?>");
                                 </script>
                             </div>
                         </div>
@@ -92,11 +92,11 @@
                         </div>
                     </div>
                 </div>
-                <?php foreach (scandir("image/location/" . $spot->as_path()) as $key => $image): ?>
-                    <?php if ($image !== "." && $image !== ".."): ?>
+                <? foreach (scandir("image/location/" . $spot->as_path()) as $key => $image): ?>
+                    <? if ($image !== "." && $image !== ".."): ?>
                         <?= Render::img_card($spot, $image); ?>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+                    <? endif; ?>
+                <? endforeach; ?>
             </div>
         </section>
 
@@ -131,7 +131,7 @@
             </div>
         </section>
 
-        <?php require_once "view/part/footer.part.php"; ?>
+        <? require_once "view/part/footer.part.php"; ?>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
         <script src="../../style/js/vendor/jquery-1.11.2.min.js"></script>

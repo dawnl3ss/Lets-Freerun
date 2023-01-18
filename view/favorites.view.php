@@ -26,7 +26,7 @@
     </head>
 
     <body>
-        <?php require_once "view/part/nav.part.php"; ?>
+        <? require_once "view/part/nav.part.php"; ?>
 
         <section class="banner" id="top">
             <div class="container">
@@ -107,7 +107,7 @@
             </div>
         </section>
 
-        <?php require_once "view/part/footer.part.php"; ?>
+        <? require_once "view/part/footer.part.php"; ?>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
         <script src="../style/js/vendor/jquery-1.11.2.min.js"></script>
