@@ -1,14 +1,13 @@
 <?php
+    $famous_spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
+        return $spot->get_tier() === TieredSpot::SPOT_FAMOUS;
+    });
+    shuffle($famous_spots);
 
-$famous_spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
-    return $spot->get_tier() === TieredSpot::SPOT_FAMOUS;
-});
-shuffle($famous_spots);
-
-$your_spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
-    return strtolower($spot->get_location()->get_country()) === "france"/*strtolower(get_current_country($_SERVER["REMOTE_ADDR"]))*/;
-});
-shuffle($your_spots);
+    $your_spots = array_filter(SpotManager::$current_spots_list, function (Spot $spot){
+        return strtolower($spot->get_location()->get_country()) === "france"/*strtolower(get_current_country($_SERVER["REMOTE_ADDR"]))*/;
+    });
+    shuffle($your_spots);
 ?>
 <html>
     <head>
