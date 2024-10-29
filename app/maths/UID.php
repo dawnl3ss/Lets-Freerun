@@ -12,7 +12,7 @@ class UID {
     /**
      * @return int
      */
-    private function generate_uid() : int { return  mt_rand(123456, 99999999); }
+    private function generate_uid() : int { return  mt_rand(123456, 9999999); }
 
     /**
      * @return int
